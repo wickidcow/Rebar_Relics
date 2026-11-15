@@ -1,0 +1,12 @@
+# Gradle / IDE
+.gradle/
+build/
+out/
+.idea/
+*.iml
+# Test servers
+run/
+logs/
+# Operating system
+.DS_Store
+Thumbs.db

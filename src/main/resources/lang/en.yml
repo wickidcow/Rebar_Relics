@@ -1,0 +1,18 @@
+addon: "Rebar Relics"
+
+item:
+  archery_talisman_1:
+    name: "<green>Archery Talisman I"
+    lore: |-
+      <arrow> +10% arrow damage while carried
+      <arrow> Multiple copies do not stack
+  strength_talisman_1:
+    name: "<green>Strength Talisman I"
+    lore: |-
+      <arrow> +5% melee and arrow damage while carried
+      <arrow> Multiple copies do not stack
+  experience_talisman_1:
+    name: "<green>Experience Talisman I"
+    lore: |-
+      <arrow> +10% experience while carried
+      <arrow> Fractional bonuses are saved between pickups

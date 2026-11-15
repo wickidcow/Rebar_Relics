@@ -1,0 +1,35 @@
+# New original progression recipes. Vanilla ingredients so the first build is testable.
+rebar_relics:archery_talisman_1:
+  pattern:
+    - "B B"
+    - " E "
+    - "B B"
+  key:
+    B: minecraft:bow
+    E: minecraft:ender_eye
+  result: rebar_relics:archery_talisman_1
+  category: equipment
+
+rebar_relics:strength_talisman_1:
+  pattern:
+    - "IDI"
+    - "DED"
+    - "IDI"
+  key:
+    I: minecraft:iron_ingot
+    D: minecraft:diamond
+    E: minecraft:ender_eye
+  result: rebar_relics:strength_talisman_1
+  category: equipment
+
+rebar_relics:experience_talisman_1:
+  pattern:
+    - "BEB"
+    - "EDE"
+    - "BEB"
+  key:
+    B: minecraft:experience_bottle
+    E: minecraft:emerald
+    D: minecraft:diamond
+  result: rebar_relics:experience_talisman_1
+  category: equipment

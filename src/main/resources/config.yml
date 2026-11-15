@@ -1,0 +1,14 @@
+# Rebar Relics v0.1 dev defaults
+# Only real Rebar_Relics items in the player's inventory activate.
+# Ender chests, shulkers, barrels and other nested storage are not scanned.
+include-offhand: true
+talismans:
+  archery:
+    enabled: true
+    multiplier: 1.10
+  strength:
+    enabled: true
+    multiplier: 1.05
+  experience:
+    enabled: true
+    multiplier: 1.10
