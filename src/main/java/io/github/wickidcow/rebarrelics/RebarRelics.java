@@ -15,7 +15,8 @@ public final class RebarRelics extends JavaPlugin implements RebarAddon {
         saveDefaultConfig();
         RelicItems.initialize(this);
         getServer().getPluginManager().registerEvents(new RelicListener(this), this);
-        getLogger().info("Loaded 3 starter talismans. Experimental: test before production use.");
+        getServer().getPluginManager().registerEvents(new ClassicTalismansListener(this), this);
+        getLogger().info("Loaded 9 starter and classic talismans. Experimental: test before production use.");
     }
 
     @Override

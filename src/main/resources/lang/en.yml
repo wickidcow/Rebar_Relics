@@ -16,3 +16,34 @@ item:
     lore: |-
       <arrow> +10% experience while carried
       <arrow> Fractional bonuses are saved between pickups
+
+  angel_talisman_1:
+    name: "<green>Angel Talisman I"
+    lore: |-
+      <arrow> 75% chance to negate fall damage
+      <arrow> Never consumed
+  traveller_talisman_1:
+    name: "<green>Traveller Talisman I"
+    lore: |-
+      <arrow> 60% chance for Speed I on sprinting
+      <arrow> Lasts three minutes; never consumed
+  firefighter_talisman_1:
+    name: "<green>Firefighter Talisman I"
+    lore: |-
+      <arrow> Prevents fire damage and grants 3 min Fire Resistance
+      <arrow> Consumes one talisman
+  water_breather_talisman_1:
+    name: "<green>Water Breather Talisman I"
+    lore: |-
+      <arrow> Prevents drowning and grants 3 min Water Breathing
+      <arrow> Consumes one talisman
+  lava_walker_talisman_1:
+    name: "<green>Lava Walker Talisman I"
+    lore: |-
+      <arrow> Prevents lava damage and grants 3 min Fire Resistance
+      <arrow> Consumes one talisman
+  anvil_talisman_1:
+    name: "<green>Anvil Talisman I"
+    lore: |-
+      <arrow> Repairs a worn tool before it breaks
+      <arrow> Consumes one talisman

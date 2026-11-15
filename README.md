@@ -6,19 +6,25 @@ Original talismans, charms and magical artifacts for [Rebar](https://github.com/
 
 **v0.1.0-SNAPSHOT — development only; not released or validated on a live server.**
 
-This first implementation adds:
+This development implementation adds nine native talismans:
 
 | Item ID | Effect while carried | Default bonus |
 | --- | --- | --- |
 | `rebar_relics:archery_talisman_1` | Arrow damage | +10% |
 | `rebar_relics:strength_talisman_1` | Melee and arrow damage | +5% |
 | `rebar_relics:experience_talisman_1` | Experience pickups | +10% |
+| `rebar_relics:angel_talisman_1` | Chance to prevent fall damage | 75% |
+| `rebar_relics:traveller_talisman_1` | Sprint activation grants Speed I | 60%; 3 minutes |
+| `rebar_relics:firefighter_talisman_1` | Prevent fire damage and grant Fire Resistance | 3 minutes; consumed |
+| `rebar_relics:water_breather_talisman_1` | Prevent drowning and grant Water Breathing | 3 minutes; consumed |
+| `rebar_relics:lava_walker_talisman_1` | Prevent lava damage and grant Fire Resistance | 3 minutes; consumed |
+| `rebar_relics:anvil_talisman_1` | Repair a tool before it breaks | Consumed |
 
 Native Rebar item identity is required: renaming a vanilla item cannot grant powers.
 Effects apply to items in top-level player inventory and (optionally) offhand, do not
 multiply per copy, and do not scan shulker/ender chest contents.
 
-Three original crafting recipes live in `src/main/resources/recipes/minecraft/crafting_shaped.yml`.
+Nine new crafting recipes live in `src/main/resources/recipes/minecraft/crafting_shaped.yml`.
 Talisman bonuses can be configured in `plugins/Rebar_Relics/config.yml`.
 The Pylon talismans guide category includes the items. Use Pylon's `/py give` command
 for controlled testing.

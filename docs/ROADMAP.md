@@ -2,15 +2,16 @@
 
 ## Phase 1 - Native starter talismans (this PR)
 - [x] First-class Rebar item registration, Pylon guide placement, translated item names
-- [x] Three original entry talismans: Archery, Strength, Experience
+- [x] Nine initial talismans: Archery, Strength, Experience, Angel, Traveller, Firefighter, Water Breather, Lava Walker, Anvil
 - [x] Inventory/offhand detection that cannot activate plain renamed vanilla items
 - [x] Configurable bonuses, no duplicate-copy stacking
 - [x] Pure unit tests for fractional XP accounting
 - [ ] GitHub Actions build and first live test (must pass before release)
 
 ## Phase 2 - Classic Slimefun-inspired talismans
-Design original, configurable implementations of classic concepts such as Miner, Hunter,
-Anvil, Water Breathing, Lava Walker, and others. Establish explicit names, charge counts
+Build remaining classic-inspired Miner, Hunter, Farmer, Caveman, Magician, Wise,
+Knight, Warrior, Whirlwind, Wizard talismans and Ender variants. Validate item
+consumption, durability preservation, and interactions with protection plugins. Establish explicit names, charge counts
 and trigger semantics in tests before adding each recipe. Do not assume item migration
 from Slimefun or the eco Talismans plugin.
 

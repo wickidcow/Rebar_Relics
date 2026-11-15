@@ -33,3 +33,73 @@ rebar_relics:experience_talisman_1:
     D: minecraft:diamond
   result: rebar_relics:experience_talisman_1
   category: equipment
+
+rebar_relics:angel_talisman_1:
+  pattern:
+    - "F F"
+    - " E "
+    - "F F"
+  key:
+    F: minecraft:feather
+    E: minecraft:ender_eye
+  result: rebar_relics:angel_talisman_1
+  category: equipment
+
+rebar_relics:traveller_talisman_1:
+  pattern:
+    - "S S"
+    - " E "
+    - "S S"
+  key:
+    S: minecraft:sugar
+    E: minecraft:ender_eye
+  result: rebar_relics:traveller_talisman_1
+  category: equipment
+
+rebar_relics:firefighter_talisman_1:
+  pattern:
+    - "BFB"
+    - "FEF"
+    - "BFB"
+  key:
+    B: minecraft:blaze_powder
+    F: minecraft:fire_charge
+    E: minecraft:ender_eye
+  result: rebar_relics:firefighter_talisman_1
+  category: equipment
+
+rebar_relics:water_breather_talisman_1:
+  pattern:
+    - "PNP"
+    - "NEN"
+    - "PNP"
+  key:
+    P: minecraft:prismarine_crystals
+    N: minecraft:nautilus_shell
+    E: minecraft:ender_eye
+  result: rebar_relics:water_breather_talisman_1
+  category: equipment
+
+rebar_relics:lava_walker_talisman_1:
+  pattern:
+    - "OMO"
+    - "MEM"
+    - "OMO"
+  key:
+    O: minecraft:obsidian
+    M: minecraft:magma_cream
+    E: minecraft:ender_eye
+  result: rebar_relics:lava_walker_talisman_1
+  category: equipment
+
+rebar_relics:anvil_talisman_1:
+  pattern:
+    - "III"
+    - "AEA"
+    - "III"
+  key:
+    I: minecraft:iron_block
+    A: minecraft:anvil
+    E: minecraft:ender_eye
+  result: rebar_relics:anvil_talisman_1
+  category: equipment
