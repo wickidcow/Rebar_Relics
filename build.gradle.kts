@@ -11,6 +11,8 @@ version = providers.gradleProperty("version").get()
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.xenondevs.xyz/releases")
+    maven("https://repo.codemc.io/repository/maven-releases/")
 }
 
 val minecraftVersion = providers.gradleProperty("minecraft.version").get()
