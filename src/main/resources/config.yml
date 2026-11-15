@@ -1,17 +1,46 @@
-# Rebar Relics v0.1 dev defaults
-# Only real Rebar_Relics items in the player's inventory activate.
-# Ender chests, shulkers, barrels and other nested storage are not scanned.
+# Rebar Relics - progress through three costly craftable cores.
+# Only real, registered Rebar items activate. No nested container scanning.
 include-offhand: true
+
+# Supported vanilla bosses. Custom plugin bosses are not automatically inferred.
+boss-types:
+  - WITHER
+  - ENDER_DRAGON
+  - ELDER_GUARDIAN
+  - WARDEN
+
 talismans:
   archery:
     enabled: true
-    multiplier: 1.10
+    multiplier: 1.10 # Legacy Tier I override compatibility
+    level-2: 1.20
+    level-3: 1.40
   strength:
     enabled: true
-    multiplier: 1.05
-  experience:
+    multiplier: 1.05 # Legacy Tier I override compatibility
+    level-2: 1.10
+    level-3: 1.20
+  attack-speed:
+    enabled: true # Values by tier are in settings/attack_speed_talisman_*.yml
+  boss:
     enabled: true
-    multiplier: 1.10
+    level-1: 1.05
+    level-2: 1.10
+    level-3: 1.15
+  poseidon:
+    enabled: true
+    level-1: 1.05
+    level-2: 1.10
+    level-3: 1.20
+  resistance:
+    enabled: true
+    level-1: 0.95
+    level-2: 0.90
+    level-3: 0.80
+  immunity:
+    enabled: true
+  necrosis:
+    enabled: true
   angel:
     enabled: true
     chance: 0.75
@@ -20,9 +49,15 @@ talismans:
     chance: 0.60
   firefighter:
     enabled: true
-  water-breather:
-    enabled: true
   lava-walker:
     enabled: true
   anvil:
     enabled: true
+
+  # Pylon already provides Experience and Water Breathing talismans.
+  # Their old Rebar_Relics 0.1-snapshot IDs load for compatibility only;
+  # no effect or recipe is installed even if these are set true.
+  experience:
+    enabled: false
+  water-breather:
+    enabled: false

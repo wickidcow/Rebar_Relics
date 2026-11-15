@@ -1,54 +1,38 @@
 # Rebar Relics
 
-Original talismans, charms and magical artifacts for [Rebar](https://github.com/pylonmc/rebar) and [Pylon](https://github.com/pylonmc/pylon), developed by wickidcow.
+An original expansion for [Rebar](https://github.com/pylonmc/rebar) and [Pylon](https://github.com/pylonmc/pylon).
 
-## Current status
+**Experimental development branch. No release has been approved or tested in game.**
 
-**v0.1.0-SNAPSHOT — development only; not released or validated on a live server.**
+## What it adds
 
-This development implementation adds nine native talismans:
+- Tier I/II/III **Archery, Strength, Attack Speed, Boss, Poseidon (trident) and Resistance** talismans.
+- Permanent **Immunity Ring** (poison) and **Necrosis Ring** (wither).
+- Classic-inspired **Angel, Traveller, Firefighter, Lava Walker, and Anvil** charms.
+- Four custom progression materials: **Relic Matrix**, **Talisman Cores I/II/III**.
+- Original passive/effect listeners, configurable strengths, Pylon's talisman guide and Rebar item IDs.
+- Exactly one highest tier applies per family; carrying duplicates does not increase potency.
 
-| Item ID | Effect while carried | Default bonus |
-| --- | --- | --- |
-| `rebar_relics:archery_talisman_1` | Arrow damage | +10% |
-| `rebar_relics:strength_talisman_1` | Melee and arrow damage | +5% |
-| `rebar_relics:experience_talisman_1` | Experience pickups | +10% |
-| `rebar_relics:angel_talisman_1` | Chance to prevent fall damage | 75% |
-| `rebar_relics:traveller_talisman_1` | Sprint activation grants Speed I | 60%; 3 minutes |
-| `rebar_relics:firefighter_talisman_1` | Prevent fire damage and grant Fire Resistance | 3 minutes; consumed |
-| `rebar_relics:water_breather_talisman_1` | Prevent drowning and grant Water Breathing | 3 minutes; consumed |
-| `rebar_relics:lava_walker_talisman_1` | Prevent lava damage and grant Fire Resistance | 3 minutes; consumed |
-| `rebar_relics:anvil_talisman_1` | Repair a tool before it breaks | Consumed |
+## No Pylon duplicates
 
-Native Rebar item identity is required: renaming a vanilla item cannot grant powers.
-Effects apply to items in top-level player inventory and (optionally) offhand, do not
-multiply per copy, and do not scan shulker/ender chest contents.
+Pylon already has Experience, Water Breathing, Health, Farming, Hunting, Breeding, Bartering, Enchanting and Luck talismans. This addon does not add new replacements for these. The prior dev-snapshot `rebar_relics:experience_talisman_1` and `rebar_relics:water_breather_talisman_1` remain **registered but inert and hidden**, to avoid unknown-item problems for testers. Their recipes have been removed. No new Sharpness talisman: Strength covers its melee effect.
 
-Nine new crafting recipes live in `src/main/resources/recipes/minecraft/crafting_shaped.yml`.
-Talisman bonuses can be configured in `plugins/Rebar_Relics/config.yml`.
-The Pylon talismans guide category includes the items. Use Pylon's `/py give` command
-for controlled testing.
+## Crafting difficulty
 
-## Target environment
+See [docs/RECIPES.md](docs/RECIPES.md). Every permanent Tier I talisman uses a costly Tier I core surrounded by themed ingredients, inspired by the included Talismans v2026.45 JAR. Tier II requires **eight of Tier I** and a Tier II core; Tier III requires **eight of Tier II** and a Tier III core. The cores require Pylon materials and rare vanilla resources. Consumable charms use a slightly cheaper but still meaningful Relic Matrix. The recipe data lives under `src/main/resources/recipes/minecraft/crafting_shaped.yml`.
 
-- Java **25**; Paper **26.3** (also test Purpur separately)
-- Rebar **0.45.0-26.3**, Pylon **0.43.0-26.3**
-- Folia is **not claimed/supported** until upstream compatibility and native integration tests pass.
+## Compatibility target
+
+- Java 25, Paper 26.3, Rebar 0.45.0-26.3, Pylon 0.43.0-26.3
+- Do not assume Folia or Purpur compatibility without actual smoke testing.
+- Keep regular backups. The test jar is not production ready.
+- Ender chest and shulker activation is intentionally not implemented.
+- Native Rebar item metadata identity is required (renaming vanilla items has no effect).
 
 ## Build
 
-`gradle clean build` using Gradle 9.2.1 and JDK 25. GitHub Actions also builds and
-runs JUnit tests; a passing build alone is not proof of in-game functionality.
-Do not put snapshot builds on worlds you cannot restore.
+`gradle clean build` using JDK 25 and Gradle 9.2.1. A GitHub Actions workflow compiles the JAR and runs unit tests. Recipe-file consistency tests do not replace testing against a running server.
 
-## Roadmap
+## Attribution
 
-See [docs/ROADMAP.md](docs/ROADMAP.md) for classic Slimefun-inspired talismans,
-advanced tiers, relic bags, rings and artifacts, Rebar recipes and future integrations.
-
-## Attribution and code provenance
-
-The existing Talismans 2026.45 Eco plugin and classic Slimefun talismans are
-feature references only. This is a new original Rebar/Pylon implementation and
-does not bundle, decompile for reuse, or redistribute their implementation,
-textures or private assets.
+The uploaded Eco Talismans JAR and classic Slimefun talismans are **mechanics/recipe references only**. Rebar Relics contains fresh code and no copied class files, plugin resources, skins or proprietary artwork from the example.

@@ -31,3 +31,14 @@ relic abilities, optional integration bridges, translations and custom textures.
 - CI passing does not replace full in-game compatibility verification.
 - Never distribute proprietary code or artwork from the reference Eco Talismans JAR.
 - Version bump, new release, and production server deployment only after integration checks.
+
+## New expansion phase
+
+- [x] Inspect the provided Talismans JAR's configuration/recipe YAML (25 definitions); no copied implementation
+- [x] Compare against Pylon's existing talisman families; skip XP, Water Breathing, Farming, Hunting, etc.
+- [x] Tiered unique effects: Attack Speed, Boss, Poseidon, Resistance; Tier II/III for Archery and Strength
+- [x] Poison/Wither immunity rings and expensive crafting cores
+- [x] Eight-of-previous-tier upgrade recipes and Pylon materials
+- [ ] Native server startup, recipe recognition, item modifier switching and item conservation tests
+- [ ] Add unique classic Slimefun effects not already in Pylon (future isolated PR)
+- [ ] Optional protected bag with tests before any Ender/shulker activation

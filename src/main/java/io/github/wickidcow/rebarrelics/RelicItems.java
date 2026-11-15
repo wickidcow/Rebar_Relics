@@ -9,66 +9,117 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Rebar item identity is authoritative. A renamed vanilla item never becomes a relic.
+ * Legacy duplicate item IDs are registered but deliberately hidden and inert so existing
+ * development snapshots are not converted into unknown items.
+ */
 public final class RelicItems {
     public enum Type {
-        ARCHERY, STRENGTH, EXPERIENCE,
-        ANGEL, TRAVELLER, FIREFIGHTER, WATER_BREATHER, LAVA_WALKER, ANVIL
+        ARCHERY, STRENGTH, EXPERIENCE, ANGEL, TRAVELLER, FIREFIGHTER,
+        WATER_BREATHER, LAVA_WALKER, ANVIL,
+        ATTACK_SPEED, BOSS, POSEIDON, RESISTANCE, IMMUNITY, NECROSIS,
+        MATRIX, CORE
     }
 
-    private static final Map<Type, NamespacedKey> KEYS = new EnumMap<>(Type.class);
+    private static final Map<Type, Map<Integer, NamespacedKey>> KEYS = new EnumMap<>(Type.class);
 
     private RelicItems() {}
 
     public static void initialize(RebarRelics plugin) {
-        register(plugin, Type.ARCHERY, "archery_talisman_1", Material.BOW);
-        register(plugin, Type.STRENGTH, "strength_talisman_1", Material.BLAZE_POWDER);
-        register(plugin, Type.EXPERIENCE, "experience_talisman_1", Material.EXPERIENCE_BOTTLE);
-        register(plugin, Type.ANGEL, "angel_talisman_1", Material.FEATHER);
-        register(plugin, Type.TRAVELLER, "traveller_talisman_1", Material.SUGAR);
-        register(plugin, Type.FIREFIGHTER, "firefighter_talisman_1", Material.FIRE_CHARGE);
-        register(plugin, Type.WATER_BREATHER, "water_breather_talisman_1", Material.NAUTILUS_SHELL);
-        register(plugin, Type.LAVA_WALKER, "lava_walker_talisman_1", Material.MAGMA_CREAM);
-        register(plugin, Type.ANVIL, "anvil_talisman_1", Material.IRON_INGOT);
-    }
+        // Progression materials are genuine Rebar items, not renamed vanilla ingredients.
+        register(plugin, Type.MATRIX, 0, "relic_matrix", Material.AMETHYST_SHARD, true);
+        register(plugin, Type.CORE, 1, "talisman_core_1", Material.ECHO_SHARD, true);
+        register(plugin, Type.CORE, 2, "talisman_core_2", Material.HEART_OF_THE_SEA, true);
+        register(plugin, Type.CORE, 3, "talisman_core_3", Material.NETHER_STAR, true);
 
-    private static void register(RebarRelics plugin, Type type, String name, Material material) {
-        NamespacedKey key = new NamespacedKey(plugin, name);
-        ItemStack item = ItemStackBuilder.rebar(material, key).build();
-        RebarItem.register(RebarItem.class, item);
-        PylonPages.TALISMANS.addItem(item);
-        KEYS.put(type, key);
-    }
+        // Built-in Pylon already provides Experience and Water Breathing talismans.
+        // Keep their old Rebar_Relics IDs registered as compatibility-only items.
+        register(plugin, Type.EXPERIENCE, 1, "experience_talisman_1", Material.EXPERIENCE_BOTTLE, false);
+        register(plugin, Type.WATER_BREATHER, 1, "water_breather_talisman_1", Material.NAUTILUS_SHELL, false);
 
-    private static NamespacedKey key(Type type) {
-        NamespacedKey key = KEYS.get(type);
-        if (key == null) throw new IllegalStateException("Relic item not registered: " + type);
-        return key;
-    }
+        register(plugin, Type.ARCHERY, 1, "archery_talisman_1", Material.BOW, true);
+        register(plugin, Type.ARCHERY, 2, "archery_talisman_2", Material.BOW, true);
+        register(plugin, Type.ARCHERY, 3, "archery_talisman_3", Material.BOW, true);
+        register(plugin, Type.STRENGTH, 1, "strength_talisman_1", Material.BLAZE_POWDER, true);
+        register(plugin, Type.STRENGTH, 2, "strength_talisman_2", Material.BLAZE_POWDER, true);
+        register(plugin, Type.STRENGTH, 3, "strength_talisman_3", Material.BLAZE_POWDER, true);
 
-    /** Inventory contents only; no shulkers, ender chests or other nested storage. */
-    public static boolean has(Player player, Type type, boolean includeOffhand) {
-        NamespacedKey key = key(type);
-        for (ItemStack stack : player.getInventory().getStorageContents()) {
-            if (RebarItem.isRebarItem(stack, key)) return true;
+        register(plugin, Type.ANGEL, 1, "angel_talisman_1", Material.FEATHER, true);
+        register(plugin, Type.TRAVELLER, 1, "traveller_talisman_1", Material.SUGAR, true);
+        register(plugin, Type.FIREFIGHTER, 1, "firefighter_talisman_1", Material.FIRE_CHARGE, true);
+        register(plugin, Type.LAVA_WALKER, 1, "lava_walker_talisman_1", Material.MAGMA_CREAM, true);
+        register(plugin, Type.ANVIL, 1, "anvil_talisman_1", Material.IRON_INGOT, true);
+
+        for (int tier = 1; tier <= 3; tier++) {
+            register(plugin, Type.ATTACK_SPEED, tier, "attack_speed_talisman_" + tier,
+                    Material.DIAMOND_SWORD, true, AttackSpeedRelic.class);
+            register(plugin, Type.BOSS, tier, "boss_talisman_" + tier,
+                    Material.WITHER_SKELETON_SKULL, true);
+            register(plugin, Type.POSEIDON, tier, "poseidon_talisman_" + tier,
+                    Material.TRIDENT, true);
+            register(plugin, Type.RESISTANCE, tier, "resistance_talisman_" + tier,
+                    Material.SHIELD, true);
         }
-        return includeOffhand && RebarItem.isRebarItem(
-                player.getInventory().getItemInOffHand(), key);
+
+        register(plugin, Type.IMMUNITY, 1, "immunity_ring", Material.GOLDEN_APPLE, true);
+        register(plugin, Type.NECROSIS, 1, "necrosis_ring", Material.WITHER_ROSE, true);
     }
 
-    /** Consume exactly one matching original item, without affecting other talismans. */
+    private static void register(RebarRelics plugin, Type type, int tier,
+                                 String name, Material material, boolean showInGuide) {
+        register(plugin, type, tier, name, material, showInGuide, RebarItem.class);
+    }
+
+    private static void register(RebarRelics plugin, Type type, int tier,
+                                 String name, Material material, boolean showInGuide,
+                                 Class<? extends RebarItem> itemClass) {
+        NamespacedKey key = new NamespacedKey(plugin, name);
+        ItemStack stack = ItemStackBuilder.rebar(material, key).build();
+        RebarItem.register(itemClass, stack);
+        if (showInGuide) PylonPages.TALISMANS.addItem(stack);
+        KEYS.computeIfAbsent(type, ignored -> new HashMap<>()).put(tier, key);
+    }
+
+    public static int bestTier(Player player, Type type, boolean includeOffhand) {
+        Map<Integer, NamespacedKey> tiers = KEYS.get(type);
+        if (tiers == null) return 0;
+        ItemStack[] storage = player.getInventory().getStorageContents();
+        ItemStack offhand = includeOffhand ? player.getInventory().getItemInOffHand() : null;
+        for (int level = 3; level >= 1; level--) {
+            NamespacedKey key = tiers.get(level);
+            if (key == null) continue;
+            for (ItemStack stack : storage) {
+                if (RebarItem.isRebarItem(stack, key)) return level;
+            }
+            if (RebarItem.isRebarItem(offhand, key)) return level;
+        }
+        return 0;
+    }
+
+    public static boolean has(Player player, Type type, boolean includeOffhand) {
+        return bestTier(player, type, includeOffhand) != 0;
+    }
+
+    /**
+     * Consumes one Tier I item. Consumable classics don't have tiers yet. The event
+     * handler only calls this if an effect is actually going to be applied.
+     */
     public static boolean consume(Player player, Type type, boolean includeOffhand) {
-        NamespacedKey key = key(type);
+        NamespacedKey key = KEYS.getOrDefault(type, Map.of()).get(1);
+        if (key == null) return false;
         for (int slot = 0; slot < player.getInventory().getStorageContents().length; slot++) {
             ItemStack stack = player.getInventory().getItem(slot);
             if (!RebarItem.isRebarItem(stack, key)) continue;
             if (stack.getAmount() == 1) {
                 player.getInventory().setItem(slot, null);
             } else {
-                ItemStack remaining = stack.clone();
-                remaining.setAmount(stack.getAmount() - 1);
-                player.getInventory().setItem(slot, remaining);
+                ItemStack copy = stack.clone();
+                copy.setAmount(stack.getAmount() - 1);
+                player.getInventory().setItem(slot, copy);
             }
             return true;
         }
@@ -78,9 +129,9 @@ public final class RelicItems {
         if (stack.getAmount() == 1) {
             player.getInventory().setItemInOffHand(null);
         } else {
-            ItemStack remaining = stack.clone();
-            remaining.setAmount(stack.getAmount() - 1);
-            player.getInventory().setItemInOffHand(remaining);
+            ItemStack copy = stack.clone();
+            copy.setAmount(stack.getAmount() - 1);
+            player.getInventory().setItemInOffHand(copy);
         }
         return true;
     }

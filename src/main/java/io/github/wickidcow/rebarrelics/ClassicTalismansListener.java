@@ -71,14 +71,6 @@ public final class ClassicTalismansListener implements Listener {
             case FALL -> {
                 if (has(player, Type.ANGEL) && roll(Type.ANGEL)) event.setCancelled(true);
             }
-            case DROWNING -> {
-                if (!player.hasPotionEffect(PotionEffectType.WATER_BREATHING)
-                        && consume(player, Type.WATER_BREATHER)) {
-                    event.setCancelled(true);
-                    grant(player, PotionEffectType.WATER_BREATHING);
-                    player.setRemainingAir(player.getMaximumAir());
-                }
-            }
             case FIRE, FIRE_TICK -> {
                 if (!player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)
                         && consume(player, Type.FIREFIGHTER)) {
