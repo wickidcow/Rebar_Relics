@@ -426,3 +426,39 @@ rebar_relics:whirlwind_talisman_3:
     K: rebar_relics:talisman_core_3
   result: rebar_relics:whirlwind_talisman_3
   category: equipment
+
+# Bags are expensive personal storage keys; contents are server-side,
+# never copied with the item or transferred between players.
+rebar_relics:talisman_bag_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_ingot
+    B: minecraft:shulker_shell
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:talisman_bag_1
+  category: equipment
+
+rebar_relics:talisman_bag_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:talisman_bag_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:talisman_bag_2
+  category: equipment
+
+rebar_relics:talisman_bag_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:talisman_bag_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:talisman_bag_3
+  category: equipment

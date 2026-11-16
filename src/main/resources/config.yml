@@ -79,3 +79,11 @@ talismans:
     level-1: 0.12
     level-2: 0.22
     level-3: 0.35
+
+# Personal Talisman Bag: contents are stored in a player UUID file, not inside
+# the bag item. The same player shares one storage across all bag copies/tiers.
+# Stashed talismans DO NOT grant effects in this first, conservative release.
+bags:
+  enabled: true
+  allow-creative: false
+  effects-from-storage: false # reserved: activation not yet implemented

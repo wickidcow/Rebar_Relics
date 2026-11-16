@@ -54,3 +54,13 @@ relic abilities, optional integration bridges, translations and custom textures.
 
 - [x] Align Gradle runner with upstream Pylon/Rebar run-paper plugin requirement (9.7.1)
 - [ ] Complete disposable Paper 26.3 boot-and-recipe smoke run
+
+## Personal Talisman Bag / storage
+
+- [x] Three progressive storage keys with 9/18/27 slots and high-cost Pylon recipes
+- [x] Per-player storage instead of item-embedded inventory to prevent clone-bag duplication
+- [x] Atomic server-side YAML writes, item whitelist, no nested containers
+- [x] Bag contents remain inert (neither Rebar nor Pylon activation from storage)
+- [ ] Run the bag's live persistence and click/drag stress tests
+- [ ] Validate server crash, filesystem write error and restart recovery with backed-up copies
+- [ ] Consider optional activation only when double-counting and lifecycle issues are tested

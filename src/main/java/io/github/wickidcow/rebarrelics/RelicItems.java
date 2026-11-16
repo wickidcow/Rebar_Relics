@@ -24,7 +24,7 @@ public final class RelicItems {
         ARCHERY, STRENGTH, EXPERIENCE, ANGEL, TRAVELLER, FIREFIGHTER,
         WATER_BREATHER, LAVA_WALKER, ANVIL,
         ATTACK_SPEED, BOSS, POSEIDON, RESISTANCE, IMMUNITY, NECROSIS,
-        MATRIX, CORE, MINER, CAVEMAN, WARRIOR, KNIGHT, WHIRLWIND
+        MATRIX, CORE, MINER, CAVEMAN, WARRIOR, KNIGHT, WHIRLWIND, BAG
     }
 
     private static final Map<Type, Map<Integer, NamespacedKey>> KEYS = new EnumMap<>(Type.class);
@@ -47,6 +47,12 @@ public final class RelicItems {
         register(plugin, Type.CORE, 1, "talisman_core_1", Material.ECHO_SHARD, true);
         register(plugin, Type.CORE, 2, "talisman_core_2", Material.HEART_OF_THE_SEA, true);
         register(plugin, Type.CORE, 3, "talisman_core_3", Material.NETHER_STAR, true);
+        // Personal access keys; the actual bag storage resides on the server,
+        // keyed by player UUID, so copied bags do not contain duplicated items.
+        register(plugin, Type.BAG, 1, "talisman_bag_1", Material.LEATHER, true, TalismanBag.class);
+        register(plugin, Type.BAG, 2, "talisman_bag_2", Material.RABBIT_HIDE, true, TalismanBag.class);
+        register(plugin, Type.BAG, 3, "talisman_bag_3", Material.PHANTOM_MEMBRANE, true, TalismanBag.class);
+
 
         // Built-in Pylon already provides Experience and Water Breathing talismans.
         // Keep their old Rebar_Relics IDs registered as compatibility-only items.
@@ -121,6 +127,35 @@ public final class RelicItems {
             if (RebarItem.isRebarItem(offhand, key)) return level;
         }
         return 0;
+    }
+
+    /**
+     * Explicit whitelist. No Shulker Boxes, other containers, progression cores,
+     * bags, or deprecated duplicate IDs. Native Pylon Talismans are allowed.
+     * Items inside this personal store never activate inventory effects.
+     */
+    public static boolean isStorableTalisman(ItemStack stack) {
+        if (stack == null || stack.isEmpty() || stack.getAmount() < 1
+                || stack.getAmount() > stack.getMaxStackSize()) return false;
+        if (RebarItem.isRebarItem(stack, io.github.pylonmc.pylon.content.talismans.Talisman.class)) {
+            return true;
+        }
+        for (var entry : KEYS.entrySet()) {
+            Type type = entry.getKey();
+            if (type == Type.CORE || type == Type.MATRIX || type == Type.BAG
+                    || type == Type.EXPERIENCE || type == Type.WATER_BREATHER) continue;
+            for (NamespacedKey key : entry.getValue().values()) {
+                if (RebarItem.isRebarItem(stack, key)) return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isBag(ItemStack stack) {
+        if (stack == null || stack.isEmpty()) return false;
+        Map<Integer, NamespacedKey> ids = KEYS.get(Type.BAG);
+        if (ids == null) return false;
+        return ids.values().stream().anyMatch(key -> RebarItem.isRebarItem(stack, key));
     }
 
     public static boolean has(Player player, Type type, boolean includeOffhand) {

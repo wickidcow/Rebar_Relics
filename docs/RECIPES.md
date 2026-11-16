@@ -50,3 +50,15 @@ Mining bonuses apply only to eligible vanilla ore drops. Pylon or ItemsAdder met
 
 Tier III requires 64 Tier I Whirlwind talismans (256 Breeze Rods, 256 steel sheets, and the cores used for those 64 Tier I items), eight Core II, and one Core III.
 This protects against arrows without generating additional projectiles or altering trident pickup.
+
+## Upgradeable, personal Talisman Bag
+
+The bag is a **personal access key**, not a shulker-like item containing serialized inventory data. Each player has one storage file identified by UUID; trading or copying a bag never transfers or duplicates its contents. This is deliberately different from the external Eco Talisman Bag design to avoid copying-items exploits.
+
+| Bag | Accessible slots | Recipe |
+| --- | ---: | --- |
+| Tier I | 9 | 4 Pylon steel ingots, 4 shulker shells, 1 Talisman Core II |
+| Tier II | 18 | 8 Tier I Bags, 1 Talisman Core II |
+| Tier III | 27 | 8 Tier II Bags, 1 Talisman Core III |
+
+An upgraded bag reveals more slots of the same storage, without erasing items in inaccessible higher-tier slots if the player later uses a smaller bag. Nested bags, containers, unrecognized items, and Pylon progression materials cannot be inserted. Native Pylon and active Rebar_Relics talismans can be stored, but **bag contents do not activate effects**. This limits surprise PvP damage and bypass issues until a dedicated activation audit exists.

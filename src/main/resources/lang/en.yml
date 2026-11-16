@@ -197,3 +197,22 @@ item:
     lore: |-
       <arrow> 35% chance to deflect incoming arrow damage
       <arrow> Highest tier applies; duplicates do not stack
+
+  talisman_bag_1:
+    name: "<green>Talisman Bag I"
+    lore: |-
+      <arrow> Right-click for 9 personal talisman storage slots
+      <arrow> Stores Rebar Relics and native Pylon talismans
+      <arrow> Stored items are inactive; contents are saved on the server
+  talisman_bag_2:
+    name: "<aqua>Talisman Bag II"
+    lore: |-
+      <arrow> Right-click for 18 personal talisman storage slots
+      <arrow> Same personal storage as lower tiers; no item duplication
+      <arrow> Stored talismans do not grant effects
+  talisman_bag_3:
+    name: "<light_purple>Talisman Bag III"
+    lore: |-
+      <arrow> Right-click for 27 personal talisman storage slots
+      <arrow> Personal, server-side storage; no nesting or shared inventory
+      <arrow> Stored talismans do not grant effects

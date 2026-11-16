@@ -8,11 +8,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
 public final class RebarRelics extends JavaPlugin implements RebarAddon {
+    private TalismanBagService bags;
+
+    public TalismanBagService bags() {
+        return bags;
+    }
+
 
     @Override
     public void onEnable() {
         registerWithRebar();
         saveDefaultConfig();
+        bags = new TalismanBagService(this);
         RelicItems.initialize(this);
         getServer().getPluginManager().registerEvents(new RelicListener(this), this);
         getServer().getPluginManager().registerEvents(new ClassicTalismansListener(this), this);
@@ -21,7 +28,13 @@ public final class RebarRelics extends JavaPlugin implements RebarAddon {
         getServer().getPluginManager().registerEvents(new CombatCharmsListener(this), this);
         getServer().getPluginManager().registerEvents(new WhirlwindListener(this), this);
         getServer().getPluginManager().registerEvents(new RecipeStartupAudit(this), this);
+        getServer().getPluginManager().registerEvents(bags, this);
         getLogger().info("Loaded unique three-tier talismans, rings, and relic materials. Experimental: test before production use.");
+    }
+
+    @Override
+    public void onDisable() {
+        if (bags != null) bags.closeAll();
     }
 
     @Override

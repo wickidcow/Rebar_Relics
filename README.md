@@ -49,3 +49,9 @@ See [docs/RECIPES.md](docs/RECIPES.md). Every permanent Tier I talisman uses a c
 ## Attribution
 
 The uploaded Eco Talismans JAR and classic Slimefun talismans are **mechanics/recipe references only**. Rebar Relics contains fresh code and no copied class files, plugin resources, skins or proprietary artwork from the example.
+
+## Personal Talisman Bag (experimental)
+
+Three bag tiers unlock 9/18/27 personal storage slots. Bags are **access keys**; contents are stored server-side under a player's UUID. Copying, trading, or losing a bag cannot copy or destroy the player's stored contents. Only registered talismans are accepted, not nested containers or crafting cores. The GUI uses restricted deposit/withdraw interactions (left-click and right-click only); shift-click, drag, hotbar-swaps and collect-to-cursor are blocked.
+
+**Stored talismans never activate abilities.** This deliberately preserves Rebar/Pylon inventory-effect semantics and avoids duplicate effects. Storage durability and GUI interactions still need in-game testing. A backup of the `plugins/Rebar_Relics/talisman-bags/` directory is strongly recommended.
