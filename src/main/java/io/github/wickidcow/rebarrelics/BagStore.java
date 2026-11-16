@@ -134,6 +134,33 @@ public final class BagStore {
         return items;
     }
 
+    /**
+     * Optimistic concurrency guard for an open GUI. A second window, external
+     * file modification, or accidental corruption must not silently overwrite
+     * storage that has changed since the player opened the bag.
+     *
+     * The guard and the atomic save share the same monitor.
+     */
+    public synchronized void saveIfUnchanged(UUID owner, ItemStack[] expected,
+                                             ItemStack[] update) throws IOException {
+        if (expected == null || expected.length != BagRules.BACKING_SLOTS) {
+            throw new IOException("Invalid bag session snapshot");
+        }
+        ItemStack[] current = load(owner);
+        for (int i = 0; i < BagRules.BACKING_SLOTS; i++) {
+            ItemStack oldStack = expected[i];
+            ItemStack savedStack = current[i];
+            boolean oldEmpty = oldStack == null || oldStack.isEmpty();
+            boolean savedEmpty = savedStack == null || savedStack.isEmpty();
+            if (oldEmpty != savedEmpty || (!oldEmpty
+                    && (oldStack.getAmount() != savedStack.getAmount()
+                    || !oldStack.isSimilar(savedStack)))) {
+                throw new IOException("Bag storage changed since GUI opened; reopen to avoid item loss");
+            }
+        }
+        save(owner, update);
+    }
+
     public synchronized void save(UUID owner, ItemStack[] items) throws IOException {
         if (items == null || items.length != BagRules.BACKING_SLOTS) {
             throw new IOException("Bag storage must have exactly 27 slots");

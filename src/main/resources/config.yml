@@ -85,5 +85,5 @@ talismans:
 # Stashed talismans DO NOT grant effects in this first, conservative release.
 bags:
   enabled: false # Enable ONLY on a disposable test world until manual GUI testing
-  allow-creative: false
+  # Creative/spectator bag access is intentionally blocked until safely tested.
   effects-from-storage: false # reserved: activation not yet implemented

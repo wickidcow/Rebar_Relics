@@ -67,13 +67,15 @@ public final class TalismanBagService implements Listener {
     }
 
     public void open(Player player, int tier) {
-        if (!plugin.getConfig().getBoolean("bags.enabled", true)) {
+        if (!plugin.getConfig().getBoolean("bags.enabled", false)) {
             player.sendMessage("Talisman bags are disabled on this server.");
             return;
         }
-        if (!plugin.getConfig().getBoolean("bags.allow-creative", false)
-                && player.getGameMode() == GameMode.CREATIVE) {
-            player.sendMessage("Talisman bag storage is unavailable in creative mode.");
+        // Keep creative/spectator blocked regardless of config until these
+        // distinct client inventory paths have dedicated interaction tests.
+        if (player.getGameMode() != GameMode.SURVIVAL
+                && player.getGameMode() != GameMode.ADVENTURE) {
+            player.sendMessage("Talisman bag storage is available only in survival/adventure.");
             return;
         }
         if (RelicItems.bestTier(player, RelicItems.Type.BAG, true) < tier) {
@@ -117,16 +119,37 @@ public final class TalismanBagService implements Listener {
         return found != null && found.holder == holder && found.inventory == top ? found : null;
     }
 
+    private void closeNextTick(Player player) {
+        // Bukkit forbids closing inventory directly inside InventoryClickEvent.
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            if (player.isOnline()) player.closeInventory();
+        });
+    }
+
+    private static boolean matchesRenderedSlot(ItemStack rendered, ItemStack stored) {
+        boolean renderedEmpty = rendered == null || rendered.isEmpty();
+        boolean storedEmpty = stored == null || stored.isEmpty();
+        return renderedEmpty == storedEmpty && (renderedEmpty
+                || (rendered.getAmount() == stored.getAmount()
+                && rendered.isSimilar(stored)));
+    }
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void click(InventoryClickEvent event) {
-        BagSession bag = session(event.getView().getTopInventory());
-        if (bag == null) return;
+        Inventory top = event.getView().getTopInventory();
+        if (!(top.getHolder() instanceof BagHolder)) return;
+        // A stale/custom orphaned bag view is never allowed to fall back to
+        // vanilla inventory behavior when our active session is absent.
         event.setCancelled(true);
+        BagSession bag = session(top);
+        if (bag == null) return;
         if (!(event.getWhoClicked() instanceof Player player)
                 || !bag.owner.equals(player.getUniqueId())) return;
-        if (player.getGameMode() == GameMode.CREATIVE
+        if ((player.getGameMode() != GameMode.SURVIVAL
+                && player.getGameMode() != GameMode.ADVENTURE)
+                || !plugin.getConfig().getBoolean("bags.enabled", false)
                 || RelicItems.bestTier(player, RelicItems.Type.BAG, true) < bag.tier) {
-            player.closeInventory();
+            closeNextTick(player);
             return;
         }
 
@@ -149,6 +172,12 @@ public final class TalismanBagService implements Listener {
 
         ItemStack cursor = event.getCursor();
         ItemStack existing = bag.items[slot];
+        if (!matchesRenderedSlot(event.getCurrentItem(), existing)) {
+            plugin.getLogger().severe("Talisman Bag UI desynchronized from the saved session for "
+                    + bag.owner + " at slot " + slot + "; refusing transfer");
+            closeNextTick(player);
+            return;
+        }
         boolean cursorEmpty = cursor == null || cursor.isEmpty();
         if (cursorEmpty && existing == null) return;
         if (!cursorEmpty && existing != null) return;
@@ -175,10 +204,11 @@ public final class TalismanBagService implements Listener {
         // Files are replaced atomically; the last known state is never parsed
         // from incomplete YAML on restart.
         try {
-            store.save(player.getUniqueId(), pending);
+            store.saveIfUnchanged(player.getUniqueId(), bag.items, pending);
             bag.items = pending;
             bag.inventory.setItem(slot, topAfter);
-            event.setCursor(cursorAfter == null ? new ItemStack(Material.AIR) : cursorAfter);
+            player.setItemOnCursor(cursorAfter == null
+                    ? new ItemStack(Material.AIR) : cursorAfter);
         } catch (IOException ex) {
             plugin.getLogger().severe("Bag storage write failed for " + bag.owner
                     + ": " + ex.getMessage());
@@ -188,7 +218,8 @@ public final class TalismanBagService implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void drag(InventoryDragEvent event) {
-        if (session(event.getView().getTopInventory()) != null) {
+        // Deny even for a stale bag view whose active session was retired.
+        if (event.getView().getTopInventory().getHolder() instanceof BagHolder) {
             event.setCancelled(true);
         }
     }

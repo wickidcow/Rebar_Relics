@@ -84,6 +84,25 @@ final class BagStoreAudit {
             require(rejected, "Invalid item write was accepted");
             require(store.load(owner)[0] == null && store.load(owner)[26].isSimilar(last),
                     "Invalid save corrupted the canonical file");
+            // A stale GUI snapshot may not overwrite newer on-disk contents.
+            ItemStack[] stale = store.load(owner);
+            ItemStack[] concurrent = store.load(owner);
+            concurrent[0] = first.clone();
+            store.save(owner, concurrent);
+            boolean staleRejected = false;
+            try {
+                store.saveIfUnchanged(owner, stale, stale);
+            } catch (IOException expected) {
+                staleRejected = true;
+            }
+            require(staleRejected, "Stale GUI snapshot overwrote newer storage");
+            require(store.load(owner)[0].isSimilar(first),
+                    "Stale GUI rejection damaged newer canonical data");
+
+            // Restore the expected post-withdrawal state before corruption tests.
+            concurrent[0] = null;
+            store.save(owner, concurrent);
+
 
             // Tamper with valid YAML by removing an existing item slot. Version 1
             // lacked this protection; version 2 must refuse silently lost data.
@@ -128,7 +147,7 @@ final class BagStoreAudit {
                     "Migrated item no longer passes checksum verification");
 
             plugin.getLogger().info(
-                    "Bag storage audit: PASS (real Rebar identity, 27-slot round-trip, checksum corruption rejection, v1 migration, UUID isolation, invalid-write guard)");
+                    "Bag storage audit: PASS (real Rebar identity, 27-slot round-trip, checksum corruption rejection, v1 migration, UUID isolation, stale-GUI guard)");
         } catch (Exception failure) {
             plugin.getLogger().severe("Bag storage audit: FAIL - " + failure);
         } finally {
