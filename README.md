@@ -40,7 +40,7 @@ See [docs/RECIPES.md](docs/RECIPES.md). Every permanent Tier I talisman uses a c
 
 ## Build
 
-`gradle clean build` using JDK 25 and Gradle 9.2.1. A GitHub Actions workflow compiles the JAR and runs unit tests. Recipe-file consistency tests do not replace testing against a running server.
+`gradle clean build` using JDK 25 and Gradle 9.7.1. A GitHub Actions workflow compiles the JAR and runs unit tests. Recipe-file consistency tests do not replace testing against a running server.
 
 ## Attribution
 

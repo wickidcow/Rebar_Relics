@@ -51,3 +51,6 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [ ] Validate WorldGuard protection, modified drops and 32+ stack overflow behavior in Paper 26.3
 - [ ] Whirlwind projectile reflection should be implemented only after safe shooter/velocity tests
 - [ ] Magician and Wizard intentionally deferred until native enchantment compatibility is proven
+
+- [x] Align Gradle runner with upstream Pylon/Rebar run-paper plugin requirement (9.7.1)
+- [ ] Complete disposable Paper 26.3 boot-and-recipe smoke run
