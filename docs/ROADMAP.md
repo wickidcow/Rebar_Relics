@@ -39,9 +39,10 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [x] Tiered unique effects: Attack Speed, Boss, Poseidon, Resistance; Tier II/III for Archery and Strength
 - [x] Poison/Wither immunity rings and expensive crafting cores
 - [x] Eight-of-previous-tier upgrade recipes and Pylon materials
-- [ ] Native server startup, recipe recognition, item modifier switching and item conservation tests
-- [ ] Add unique classic Slimefun effects not already in Pylon (future isolated PR)
-- [ ] Optional protected bag with tests before any Ender/shulker activation
+- [x] Native server startup and recipe recognition (39/39, no failed registrations)
+- [ ] In-game item modifier switching, click/drag safety, item conservation and restart tests
+- [x] Unique classic Slimefun-inspired Miner, Caveman, Warrior, Knight and Whirlwind effects
+- [x] Protected personal bag with storage round-trip and invalid-write tests; activation remains off
 
 ## Classic-inspired expansion #2
 
@@ -53,7 +54,7 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [ ] Magician and Wizard intentionally deferred until native enchantment compatibility is proven
 
 - [x] Align Gradle runner with upstream Pylon/Rebar run-paper plugin requirement (9.7.1)
-- [ ] Complete disposable Paper 26.3 boot-and-recipe smoke run
+- [x] Complete disposable Paper 26.3 boot-and-recipe smoke run (39/39 recipes)
 
 ## Personal Talisman Bag / storage
 

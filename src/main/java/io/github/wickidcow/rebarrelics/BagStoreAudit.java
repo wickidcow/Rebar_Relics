@@ -36,9 +36,21 @@ final class BagStoreAudit {
             require(RelicItems.isStorableTalisman(last), "Highest-tier Rebar talisman was not accepted");
             require(!RelicItems.isStorableTalisman(new ItemStack(Material.SHULKER_BOX)),
                     "Shulker box must be rejected");
+            ItemStack bag = ItemStackBuilder.rebar(
+                    Material.LEATHER, new NamespacedKey(plugin, "talisman_bag_1")).build();
+            require(!RelicItems.isStorableTalisman(bag),
+                    "Nested Talisman Bag must be rejected");
+            ItemStack core = ItemStackBuilder.rebar(
+                    Material.ECHO_SHARD, new NamespacedKey(plugin, "talisman_core_1")).build();
+            require(!RelicItems.isStorableTalisman(core),
+                    "Progression core must not enter bag storage");
 
             ItemStack[] items = store.load(user);
             require(items.length == 27, "Blank bag must expose 27 backing slots");
+            ItemStack[] anotherPlayer = store.load(UUID.randomUUID());
+            for (ItemStack item : anotherPlayer) {
+                require(item == null, "Player UUID separation failed");
+            }
             items[0] = first;
             items[26] = last;
             store.save(user, items);
@@ -54,6 +66,9 @@ final class BagStoreAudit {
             // Remove slot 0, then prove tier III's existing slot is not erased.
             roundtrip[0] = null;
             store.save(user, roundtrip);
+            require(Files.isRegularFile(tmp.resolve("talisman-bags")
+                            .resolve(user + ".bak")),
+                    "Previous storage snapshot is missing");
             ItemStack[] persisted = store.load(user);
             require(persisted[0] == null && persisted[26] != null,
                     "Removal or hidden-slot persistence mismatch");
