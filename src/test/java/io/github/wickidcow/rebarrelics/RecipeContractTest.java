@@ -100,4 +100,16 @@ class RecipeContractTest {
             assertTrue(key.values().stream().anyMatch(s -> s.startsWith("pylon:")), id);
         }
     }
+    @Test
+    @SuppressWarnings("unchecked")
+    void untestedBagTransfersAreDisabledByDefault() {
+        Map<String, Object> config = load("config.yml");
+        Map<String, Object> bags = (Map<String, Object>) config.get("bags");
+        assertNotNull(bags, "Missing bag configuration");
+        assertEquals(Boolean.FALSE, bags.get("enabled"),
+                "Bag GUI must be opt-in until manual inventory/crash checks pass");
+        assertEquals(Boolean.FALSE, bags.get("effects-from-storage"),
+                "Stored talismans must remain inactive to avoid double-counted effects");
+    }
+
 }

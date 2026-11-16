@@ -134,7 +134,7 @@ public final class TalismanBagService implements Listener {
                 && rendered.isSimilar(stored)));
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void click(InventoryClickEvent event) {
         Inventory top = event.getView().getTopInventory();
         if (!(top.getHolder() instanceof BagHolder)) return;
@@ -216,7 +216,7 @@ public final class TalismanBagService implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void drag(InventoryDragEvent event) {
         // Deny even for a stale bag view whose active session was retired.
         if (event.getView().getTopInventory().getHolder() instanceof BagHolder) {
