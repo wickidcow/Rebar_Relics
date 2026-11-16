@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.server.ServerLoadEvent;
+import io.github.pylonmc.rebar.event.RebarConfigurableRecipesLoadedEvent;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Read-only runtime audit: validates that the recipes shipped in the JAR are
- * actually registered with the Paper recipe registry after server startup.
+ * actually registered with the Paper recipe registry after Rebar loads all\n * configurable recipes (which happens after plugin startup, on the first tick).
  * No recipe mutation or automatic inventory repair is performed.
  */
 public final class RecipeStartupAudit implements Listener {
@@ -27,7 +27,7 @@ public final class RecipeStartupAudit implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onServerLoad(ServerLoadEvent event) {
+    public void onRecipesLoaded(RebarConfigurableRecipesLoadedEvent event) {
         try (InputStream input = plugin.getResource("recipes/minecraft/crafting_shaped.yml")) {
             if (input == null) {
                 plugin.getLogger().severe("Rebar Relics recipe registration incomplete: bundled file missing");
