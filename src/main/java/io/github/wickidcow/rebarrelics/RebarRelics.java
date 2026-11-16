@@ -19,6 +19,7 @@ public final class RebarRelics extends JavaPlugin implements RebarAddon {
         getServer().getPluginManager().registerEvents(new AdvancedRelicListener(this), this);
         getServer().getPluginManager().registerEvents(new MiningTalismansListener(this), this);
         getServer().getPluginManager().registerEvents(new CombatCharmsListener(this), this);
+        getServer().getPluginManager().registerEvents(new RecipeStartupAudit(this), this);
         getLogger().info("Loaded unique three-tier talismans, rings, and relic materials. Experimental: test before production use.");
     }
 

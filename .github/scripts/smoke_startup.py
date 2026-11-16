@@ -15,6 +15,7 @@ import time
 
 DEADLINE_SECONDS = 360
 LOADED_MARKER = "Loaded unique three-tier talismans"
+RECIPE_MARKER = "Recipe registration audit: 33/33"
 STOP_MARKERS = ("Done (", "Done!")
 FATAL = (
     "Could not load plugin 'Rebar_Relics'",
@@ -23,6 +24,7 @@ FATAL = (
     "Error occurred while enabling Pylon",
     "Failed to load recipe with key 'rebar_relics:",
     "Failed to load recipe",
+    "Rebar Relics recipe registration incomplete",
     "Failed to load plugin 'Rebar_Relics'",
     "NoClassDefFoundError",
     "NoSuchMethodError",
@@ -61,6 +63,7 @@ def main():
 
     loaded = False
     started = False
+    recipes = False
     fatal_lines = []
     deadline = time.monotonic() + DEADLINE_SECONDS
     with open("smoke-startup.log", "w", encoding="utf-8") as log:
@@ -78,13 +81,15 @@ def main():
             log.flush()
             if LOADED_MARKER in line:
                 loaded = True
+            if RECIPE_MARKER in line:
+                recipes = True
             if "Done (" in line and "For help, type" in line:
                 started = True
             elif re.search(r"Done \([\d.]+s\)!.*help", line):
                 started = True
             if any(marker.lower() in line.lower() for marker in FATAL):
                 fatal_lines.append(line.strip())
-            if loaded and started:
+            if loaded and started and recipes:
                 print("Disposable Paper startup markers reached.", flush=True)
                 break
 
@@ -103,8 +108,8 @@ def main():
             os.killpg(process.pid, signal.SIGKILL)
             process.wait(timeout=5)
 
-    if not loaded or not started or fatal_lines:
-        print("Startup smoke FAILED: loaded=", loaded, "started=", started,
+    if not loaded or not started or not recipes or fatal_lines:
+        print("Startup smoke FAILED: loaded=", loaded, "started=", started, "recipes=", recipes,
               "fatal=", fatal_lines[:15], file=sys.stderr)
         return 1
     print("Startup smoke PASSED (not an in-game behavior test).")
