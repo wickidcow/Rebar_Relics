@@ -9,8 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Rebar item identity is authoritative. A renamed vanilla item never becomes a relic.
@@ -27,6 +29,16 @@ public final class RelicItems {
 
     private static final Map<Type, Map<Integer, NamespacedKey>> KEYS = new EnumMap<>(Type.class);
 
+    // Do not use ordinary clickable, throwable, placeable or damageable base items
+    // for new relics. Inert display materials cannot accidentally consume a relic.
+    private static final Set<Material> UNSAFE_ACTIVE_ICONS = EnumSet.of(
+            Material.BOW, Material.CROSSBOW, Material.TRIDENT,
+            Material.FIRE_CHARGE, Material.WIND_CHARGE, Material.EXPERIENCE_BOTTLE,
+            Material.IRON_SWORD, Material.DIAMOND_SWORD, Material.IRON_PICKAXE,
+            Material.GOLDEN_PICKAXE, Material.GOLDEN_APPLE, Material.SHIELD,
+            Material.WITHER_SKELETON_SKULL, Material.WITHER_ROSE
+    );
+
     private RelicItems() {}
 
     public static void initialize(RebarRelics plugin) {
@@ -41,39 +53,39 @@ public final class RelicItems {
         register(plugin, Type.EXPERIENCE, 1, "experience_talisman_1", Material.EXPERIENCE_BOTTLE, false);
         register(plugin, Type.WATER_BREATHER, 1, "water_breather_talisman_1", Material.NAUTILUS_SHELL, false);
 
-        register(plugin, Type.ARCHERY, 1, "archery_talisman_1", Material.BOW, true);
-        register(plugin, Type.ARCHERY, 2, "archery_talisman_2", Material.BOW, true);
-        register(plugin, Type.ARCHERY, 3, "archery_talisman_3", Material.BOW, true);
+        register(plugin, Type.ARCHERY, 1, "archery_talisman_1", Material.FLINT, true);
+        register(plugin, Type.ARCHERY, 2, "archery_talisman_2", Material.FLINT, true);
+        register(plugin, Type.ARCHERY, 3, "archery_talisman_3", Material.FLINT, true);
         register(plugin, Type.STRENGTH, 1, "strength_talisman_1", Material.BLAZE_POWDER, true);
         register(plugin, Type.STRENGTH, 2, "strength_talisman_2", Material.BLAZE_POWDER, true);
         register(plugin, Type.STRENGTH, 3, "strength_talisman_3", Material.BLAZE_POWDER, true);
 
         register(plugin, Type.ANGEL, 1, "angel_talisman_1", Material.FEATHER, true);
         register(plugin, Type.TRAVELLER, 1, "traveller_talisman_1", Material.SUGAR, true);
-        register(plugin, Type.FIREFIGHTER, 1, "firefighter_talisman_1", Material.FIRE_CHARGE, true);
+        register(plugin, Type.FIREFIGHTER, 1, "firefighter_talisman_1", Material.MAGMA_CREAM, true);
         register(plugin, Type.LAVA_WALKER, 1, "lava_walker_talisman_1", Material.MAGMA_CREAM, true);
         register(plugin, Type.ANVIL, 1, "anvil_talisman_1", Material.IRON_INGOT, true);
         // Classic Slimefun-inspired distinct mechanics absent from Pylon.
-        register(plugin, Type.MINER, 1, "miner_talisman_1", Material.IRON_PICKAXE, true);
-        register(plugin, Type.CAVEMAN, 1, "caveman_talisman_1", Material.GOLDEN_PICKAXE, true);
-        register(plugin, Type.WARRIOR, 1, "warrior_talisman_1", Material.IRON_SWORD, true);
-        register(plugin, Type.KNIGHT, 1, "knight_talisman_1", Material.SHIELD, true);
+        register(plugin, Type.MINER, 1, "miner_talisman_1", Material.IRON_NUGGET, true);
+        register(plugin, Type.CAVEMAN, 1, "caveman_talisman_1", Material.RAW_GOLD, true);
+        register(plugin, Type.WARRIOR, 1, "warrior_talisman_1", Material.BLAZE_ROD, true);
+        register(plugin, Type.KNIGHT, 1, "knight_talisman_1", Material.PRISMARINE_SHARD, true);
 
         for (int tier = 1; tier <= 3; tier++) {
             register(plugin, Type.ATTACK_SPEED, tier, "attack_speed_talisman_" + tier,
-                    Material.DIAMOND_SWORD, true, AttackSpeedRelic.class);
+                    Material.QUARTZ, true, AttackSpeedRelic.class);
             register(plugin, Type.BOSS, tier, "boss_talisman_" + tier,
-                    Material.WITHER_SKELETON_SKULL, true);
+                    Material.NETHER_STAR, true);
             register(plugin, Type.POSEIDON, tier, "poseidon_talisman_" + tier,
-                    Material.TRIDENT, true);
+                    Material.HEART_OF_THE_SEA, true);
             register(plugin, Type.RESISTANCE, tier, "resistance_talisman_" + tier,
-                    Material.SHIELD, true);
+                    Material.PRISMARINE_CRYSTALS, true);
             register(plugin, Type.WHIRLWIND, tier, "whirlwind_talisman_" + tier,
-                    Material.WIND_CHARGE, true);
+                    Material.AMETHYST_SHARD, true);
         }
 
-        register(plugin, Type.IMMUNITY, 1, "immunity_ring", Material.GOLDEN_APPLE, true);
-        register(plugin, Type.NECROSIS, 1, "necrosis_ring", Material.WITHER_ROSE, true);
+        register(plugin, Type.IMMUNITY, 1, "immunity_ring", Material.GOLD_INGOT, true);
+        register(plugin, Type.NECROSIS, 1, "necrosis_ring", Material.ECHO_SHARD, true);
     }
 
     private static void register(RebarRelics plugin, Type type, int tier,
@@ -84,6 +96,10 @@ public final class RelicItems {
     private static void register(RebarRelics plugin, Type type, int tier,
                                  String name, Material material, boolean showInGuide,
                                  Class<? extends RebarItem> itemClass) {
+        if (showInGuide && UNSAFE_ACTIVE_ICONS.contains(material)) {
+            throw new IllegalArgumentException("Relic " + name
+                    + " uses a vanilla-interactive base material: " + material);
+        }
         NamespacedKey key = new NamespacedKey(plugin, name);
         ItemStack stack = ItemStackBuilder.rebar(material, key).build();
         RebarItem.register(itemClass, stack);
