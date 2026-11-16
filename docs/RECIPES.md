@@ -30,3 +30,14 @@ These costs are intentionally high and represent a **new original Pylon/Rebar cr
 No recipes create new Experience, Water Breathing, Farming, Hunting, Luck, Health, Breeding, Enchanting, Bartering or Sharpness talismans because they overlap Pylon or the existing Strength relic.
 
 **Balance note:** 64 base talismans and eight Tier II cores are needed to forge a single Tier III relic, as well as its own Core III. On an established multiplayer server, this is an endgame sink. Consider adjusting costs with a versioned recipe migration rather than silently changing recipes that players already learned.
+
+## Unique classic Slimefun-inspired craftable talismans
+
+| Talisman | Outer four | Inner four | Center |
+| --- | --- | --- | --- |
+| Miner | Pylon steel pickaxes | Diamond pickaxes | Talisman Core I |
+| Caveman | Miner talismans | Pylon steel ingots | Talisman Core II |
+| Warrior (consumable) | Pylon steel swords | Blaze rods | Relic Matrix |
+| Knight (consumable) | Pylon steel ingots | Golden apples | Relic Matrix |
+
+Mining bonuses apply only to eligible vanilla ore drops. Pylon or ItemsAdder metadata never gets cloned by the Miner effect.

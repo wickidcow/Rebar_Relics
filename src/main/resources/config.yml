@@ -61,3 +61,15 @@ talismans:
     enabled: false
   water-breather:
     enabled: false
+
+  miner:
+    enabled: true
+    chance: 0.20
+  caveman:
+    enabled: true
+    chance: 0.50
+  warrior:
+    enabled: true
+  knight:
+    enabled: true
+    chance: 0.30

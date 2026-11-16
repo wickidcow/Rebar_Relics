@@ -159,3 +159,25 @@ item:
     lore: |-
       <arrow> Upgrade Tier II talismans to Tier III
       <arrow> Highest tier only, never duplicate stack
+
+  miner_talisman_1:
+    name: "<green>Miner Talisman"
+    lore: |-
+      <arrow> 20% chance to double eligible vanilla ore drops
+      <arrow> Never doubles custom items or cancelled drops
+      <arrow> Silk Touch excluded; duplicate copies do not stack
+  caveman_talisman_1:
+    name: "<green>Caveman Talisman"
+    lore: |-
+      <arrow> 50% chance for Haste II when mining ores
+      <arrow> Duration: 20 seconds; never consumed
+  warrior_talisman_1:
+    name: "<green>Warrior Talisman"
+    lore: |-
+      <arrow> Strength III for 3 minutes when damaged
+      <arrow> Consumes one talisman
+  knight_talisman_1:
+    name: "<green>Knight Talisman"
+    lore: |-
+      <arrow> 30% chance for Regeneration IV when damaged
+      <arrow> Duration: 5 seconds; consumes one talisman

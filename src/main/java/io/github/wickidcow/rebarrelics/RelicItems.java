@@ -22,7 +22,7 @@ public final class RelicItems {
         ARCHERY, STRENGTH, EXPERIENCE, ANGEL, TRAVELLER, FIREFIGHTER,
         WATER_BREATHER, LAVA_WALKER, ANVIL,
         ATTACK_SPEED, BOSS, POSEIDON, RESISTANCE, IMMUNITY, NECROSIS,
-        MATRIX, CORE
+        MATRIX, CORE, MINER, CAVEMAN, WARRIOR, KNIGHT
     }
 
     private static final Map<Type, Map<Integer, NamespacedKey>> KEYS = new EnumMap<>(Type.class);
@@ -53,6 +53,11 @@ public final class RelicItems {
         register(plugin, Type.FIREFIGHTER, 1, "firefighter_talisman_1", Material.FIRE_CHARGE, true);
         register(plugin, Type.LAVA_WALKER, 1, "lava_walker_talisman_1", Material.MAGMA_CREAM, true);
         register(plugin, Type.ANVIL, 1, "anvil_talisman_1", Material.IRON_INGOT, true);
+        // Classic Slimefun-inspired distinct mechanics absent from Pylon.
+        register(plugin, Type.MINER, 1, "miner_talisman_1", Material.IRON_PICKAXE, true);
+        register(plugin, Type.CAVEMAN, 1, "caveman_talisman_1", Material.GOLDEN_PICKAXE, true);
+        register(plugin, Type.WARRIOR, 1, "warrior_talisman_1", Material.IRON_SWORD, true);
+        register(plugin, Type.KNIGHT, 1, "knight_talisman_1", Material.SHIELD, true);
 
         for (int tier = 1; tier <= 3; tier++) {
             register(plugin, Type.ATTACK_SPEED, tier, "attack_speed_talisman_" + tier,

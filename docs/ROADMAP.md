@@ -42,3 +42,12 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [ ] Native server startup, recipe recognition, item modifier switching and item conservation tests
 - [ ] Add unique classic Slimefun effects not already in Pylon (future isolated PR)
 - [ ] Optional protected bag with tests before any Ender/shulker activation
+
+## Classic-inspired expansion #2
+
+- [x] Miner (20% eligible vanilla ore drops only) and Caveman (50% Haste)
+- [x] Warrior and Knight consumable protection with duplicate-copy safeguards
+- [x] Expensive Pylon material recipes for the new four talismans
+- [ ] Validate WorldGuard protection, modified drops and 32+ stack overflow behavior in Paper 26.3
+- [ ] Whirlwind projectile reflection should be implemented only after safe shooter/velocity tests
+- [ ] Magician and Wizard intentionally deferred until native enchantment compatibility is proven

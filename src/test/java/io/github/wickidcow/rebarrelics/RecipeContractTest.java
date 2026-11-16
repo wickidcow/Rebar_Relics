@@ -31,7 +31,7 @@ class RecipeContractTest {
     void exactlyOneHardRecipePerActiveItem() {
         Map<String, Object> recipes = load("recipes/minecraft/crafting_shaped.yml");
         Map<String, Object> lang = (Map<String, Object>) load("lang/en.yml").get("item");
-        assertEquals(29, recipes.size(), "25 active relics and four crafting materials");
+        assertEquals(33, recipes.size(), "29 active relics and four crafting materials");
         for (Map.Entry<String, Object> entry : recipes.entrySet()) {
             assertTrue(entry.getKey().startsWith("rebar_relics:"));
             String id = entry.getKey().substring("rebar_relics:".length());

@@ -342,3 +342,52 @@ rebar_relics:anvil_talisman_1:
     K: rebar_relics:relic_matrix
   result: rebar_relics:anvil_talisman_1
   category: equipment
+
+# Unique classic-inspired effects deliberately avoid Pylon's farming/hunting duplicates.
+rebar_relics:miner_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_pickaxe
+    B: minecraft:diamond_pickaxe
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:miner_talisman_1
+  category: equipment
+
+rebar_relics:caveman_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: rebar_relics:miner_talisman_1
+    B: pylon:steel_ingot
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:caveman_talisman_1
+  category: equipment
+
+rebar_relics:warrior_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_sword
+    B: minecraft:blaze_rod
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:warrior_talisman_1
+  category: equipment
+
+rebar_relics:knight_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_ingot
+    B: minecraft:golden_apple
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:knight_talisman_1
+  category: equipment

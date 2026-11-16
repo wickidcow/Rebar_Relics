@@ -13,6 +13,15 @@ An original expansion for [Rebar](https://github.com/pylonmc/rebar) and [Pylon](
 - Original passive/effect listeners, configurable strengths, Pylon's talisman guide and Rebar item IDs.
 - Exactly one highest tier applies per family; carrying duplicates does not increase potency.
 
+## Mining and defensive additions
+
+- **Miner:** 20% chance to increase existing, eligible *vanilla* ore item drops (no new entities, custom metadata, Silk Touch or stack overflow).
+- **Caveman:** 50% chance for Haste II (20 seconds) when mining natural vanilla ore blocks.
+- **Warrior:** consumes one on a damage event to grant Strength III for three minutes.
+- **Knight:** 30% chance to consume one on a damage event to grant Regeneration IV for five seconds.
+
+These classic effects intentionally do not reproduce Pylon's Farming or Hunting Talismans.
+
 ## No Pylon duplicates
 
 Pylon already has Experience, Water Breathing, Health, Farming, Hunting, Breeding, Bartering, Enchanting and Luck talismans. This addon does not add new replacements for these. The prior dev-snapshot `rebar_relics:experience_talisman_1` and `rebar_relics:water_breather_talisman_1` remain **registered but inert and hidden**, to avoid unknown-item problems for testers. Their recipes have been removed. No new Sharpness talisman: Strength covers its melee effect.
