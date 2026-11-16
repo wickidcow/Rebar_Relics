@@ -1,0 +1,218 @@
+addon: "Rebar Relics"
+
+item:
+  archery_talisman_1:
+    name: "<green>Archery Talisman I"
+    lore: |-
+      <arrow> +10% bow and crossbow damage while carried
+      <arrow> Multiple copies do not stack
+  strength_talisman_1:
+    name: "<green>Strength Talisman I"
+    lore: |-
+      <arrow> +5% melee, bow, and trident damage while carried
+      <arrow> Multiple copies do not stack
+  experience_talisman_1:
+    name: "<green>Experience Talisman I"
+    lore: |-
+      <arrow> Legacy development item; inactive
+      <arrow> Pylon includes its own Experience Talismans
+
+  angel_talisman_1:
+    name: "<green>Angel Talisman I"
+    lore: |-
+      <arrow> 75% chance to negate fall damage
+      <arrow> Never consumed
+  traveller_talisman_1:
+    name: "<green>Traveller Talisman I"
+    lore: |-
+      <arrow> 60% chance for Speed I on sprinting
+      <arrow> Lasts three minutes; never consumed
+  firefighter_talisman_1:
+    name: "<green>Firefighter Talisman I"
+    lore: |-
+      <arrow> Prevents fire damage and grants 3 min Fire Resistance
+      <arrow> Consumes one talisman
+  water_breather_talisman_1:
+    name: "<green>Water Breather Talisman I"
+    lore: |-
+      <arrow> Legacy development item; inactive
+      <arrow> Use Pylon Water Breathing Talismans
+  lava_walker_talisman_1:
+    name: "<green>Lava Walker Talisman I"
+    lore: |-
+      <arrow> Prevents lava damage and grants 3 min Fire Resistance
+      <arrow> Consumes one talisman
+  anvil_talisman_1:
+    name: "<green>Anvil Talisman I"
+    lore: |-
+      <arrow> Repairs a worn tool before it breaks
+      <arrow> Consumes one talisman
+
+# New tiered families and crafting materials
+  archery_talisman_2:
+    name: "<green>Archery Talisman II"
+    lore: |-
+      <arrow> +20% bow and crossbow damage
+      <arrow> Highest tier only, never duplicate stack
+  archery_talisman_3:
+    name: "<green>Archery Talisman III"
+    lore: |-
+      <arrow> +40% bow and crossbow damage
+      <arrow> Highest tier only, never duplicate stack
+  strength_talisman_2:
+    name: "<green>Strength Talisman II"
+    lore: |-
+      <arrow> +10% melee, bow and thrown trident damage
+      <arrow> Highest tier only, never duplicate stack
+  strength_talisman_3:
+    name: "<green>Strength Talisman III"
+    lore: |-
+      <arrow> +20% melee, bow and thrown trident damage
+      <arrow> Highest tier only, never duplicate stack
+  attack_speed_talisman_1:
+    name: "<green>Attack Speed Talisman I"
+    lore: |-
+      <arrow> +5% attack speed
+      <arrow> Highest tier only, never duplicate stack
+  attack_speed_talisman_2:
+    name: "<green>Attack Speed Talisman II"
+    lore: |-
+      <arrow> +10% attack speed
+      <arrow> Highest tier only, never duplicate stack
+  attack_speed_talisman_3:
+    name: "<green>Attack Speed Talisman III"
+    lore: |-
+      <arrow> +25% attack speed
+      <arrow> Highest tier only, never duplicate stack
+  boss_talisman_1:
+    name: "<green>Boss Talisman I"
+    lore: |-
+      <arrow> +5% damage to configured bosses
+      <arrow> Highest tier only, never duplicate stack
+  boss_talisman_2:
+    name: "<green>Boss Talisman II"
+    lore: |-
+      <arrow> +10% damage to configured bosses
+      <arrow> Highest tier only, never duplicate stack
+  boss_talisman_3:
+    name: "<green>Boss Talisman III"
+    lore: |-
+      <arrow> +15% damage to configured bosses
+      <arrow> Highest tier only, never duplicate stack
+  poseidon_talisman_1:
+    name: "<green>Poseidon Talisman I"
+    lore: |-
+      <arrow> +5% trident damage
+      <arrow> Highest tier only, never duplicate stack
+  poseidon_talisman_2:
+    name: "<green>Poseidon Talisman II"
+    lore: |-
+      <arrow> +10% trident damage
+      <arrow> Highest tier only, never duplicate stack
+  poseidon_talisman_3:
+    name: "<green>Poseidon Talisman III"
+    lore: |-
+      <arrow> +20% trident damage
+      <arrow> Highest tier only, never duplicate stack
+  resistance_talisman_1:
+    name: "<green>Resistance Talisman I"
+    lore: |-
+      <arrow> 5% less entity damage
+      <arrow> Highest tier only, never duplicate stack
+  resistance_talisman_2:
+    name: "<green>Resistance Talisman II"
+    lore: |-
+      <arrow> 10% less entity damage
+      <arrow> Highest tier only, never duplicate stack
+  resistance_talisman_3:
+    name: "<green>Resistance Talisman III"
+    lore: |-
+      <arrow> 20% less entity damage
+      <arrow> Highest tier only, never duplicate stack
+  immunity_ring:
+    name: "<green>Immunity Ring"
+    lore: |-
+      <arrow> Immune to poison damage
+      <arrow> Highest tier only, never duplicate stack
+  necrosis_ring:
+    name: "<green>Necrosis Ring"
+    lore: |-
+      <arrow> Immune to wither damage
+      <arrow> Highest tier only, never duplicate stack
+  relic_matrix:
+    name: "<green>Relic Matrix"
+    lore: |-
+      <arrow> Core material for consumable charms
+      <arrow> Highest tier only, never duplicate stack
+  talisman_core_1:
+    name: "<green>Talisman Core I"
+    lore: |-
+      <arrow> Craft advanced Tier I talismans
+      <arrow> Highest tier only, never duplicate stack
+  talisman_core_2:
+    name: "<green>Talisman Core II"
+    lore: |-
+      <arrow> Upgrade Tier I talismans to Tier II
+      <arrow> Highest tier only, never duplicate stack
+  talisman_core_3:
+    name: "<green>Talisman Core III"
+    lore: |-
+      <arrow> Upgrade Tier II talismans to Tier III
+      <arrow> Highest tier only, never duplicate stack
+
+  miner_talisman_1:
+    name: "<green>Miner Talisman"
+    lore: |-
+      <arrow> 20% chance to double eligible vanilla ore drops
+      <arrow> Never doubles custom items or cancelled drops
+      <arrow> Silk Touch excluded; duplicate copies do not stack
+  caveman_talisman_1:
+    name: "<green>Caveman Talisman"
+    lore: |-
+      <arrow> 50% chance for Haste II when mining ores
+      <arrow> Duration: 20 seconds; never consumed
+  warrior_talisman_1:
+    name: "<green>Warrior Talisman"
+    lore: |-
+      <arrow> Strength III for 3 minutes when damaged
+      <arrow> Consumes one talisman
+  knight_talisman_1:
+    name: "<green>Knight Talisman"
+    lore: |-
+      <arrow> 30% chance for Regeneration IV when damaged
+      <arrow> Duration: 5 seconds; consumes one talisman
+
+  whirlwind_talisman_1:
+    name: "<green>Whirlwind Talisman I"
+    lore: |-
+      <arrow> 12% chance to deflect incoming arrow damage
+      <arrow> Tridents excluded; no projectile cloning or owner changes
+  whirlwind_talisman_2:
+    name: "<aqua>Whirlwind Talisman II"
+    lore: |-
+      <arrow> 22% chance to deflect incoming arrow damage
+      <arrow> Highest tier applies; duplicates do not stack
+  whirlwind_talisman_3:
+    name: "<light_purple>Whirlwind Talisman III"
+    lore: |-
+      <arrow> 35% chance to deflect incoming arrow damage
+      <arrow> Highest tier applies; duplicates do not stack
+
+  talisman_bag_1:
+    name: "<green>Talisman Bag I"
+    lore: |-
+      <arrow> Right-click for 9 personal talisman storage slots
+      <arrow> Stores Rebar Relics and native Pylon talismans
+      <arrow> Stored items are inactive; contents are saved on the server
+  talisman_bag_2:
+    name: "<aqua>Talisman Bag II"
+    lore: |-
+      <arrow> Right-click for 18 personal talisman storage slots
+      <arrow> Same personal storage as lower tiers; no item duplication
+      <arrow> Stored talismans do not grant effects
+  talisman_bag_3:
+    name: "<light_purple>Talisman Bag III"
+    lore: |-
+      <arrow> Right-click for 27 personal talisman storage slots
+      <arrow> Personal, server-side storage; no nesting or shared inventory
+      <arrow> Stored talismans do not grant effects

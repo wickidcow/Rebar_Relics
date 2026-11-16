@@ -1,0 +1,464 @@
+# Original hard-mode recipes modeled on the reference's 8-to-1 tier upgrades.
+# Pylon items are used in expensive central cores; no duplicates of Pylon talismans.
+
+rebar_relics:relic_matrix:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:bronze_ingot
+    B: minecraft:gold_block
+    K: minecraft:ender_eye
+  result: rebar_relics:relic_matrix
+  category: equipment
+
+rebar_relics:talisman_core_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:diamond_block
+    B: pylon:steel_ingot
+    K: minecraft:ender_eye
+  result: rebar_relics:talisman_core_1
+  category: equipment
+
+rebar_relics:talisman_core_2:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:diamond_dust
+    B: minecraft:netherite_scrap
+    K: minecraft:heart_of_the_sea
+  result: rebar_relics:talisman_core_2
+  category: equipment
+
+rebar_relics:talisman_core_3:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:intermediate_core_chunk
+    B: minecraft:netherite_ingot
+    K: minecraft:nether_star
+  result: rebar_relics:talisman_core_3
+  category: equipment
+
+rebar_relics:archery_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:bow
+    B: minecraft:crossbow
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:archery_talisman_1
+  category: equipment
+
+rebar_relics:attack_speed_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:sugar
+    B: minecraft:diamond_sword
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:attack_speed_talisman_1
+  category: equipment
+
+rebar_relics:boss_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:bell
+    B: minecraft:wither_skeleton_skull
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:boss_talisman_1
+  category: equipment
+
+rebar_relics:poseidon_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:nautilus_shell
+    B: minecraft:trident
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:poseidon_talisman_1
+  category: equipment
+
+rebar_relics:resistance_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:iron_block
+    B: minecraft:obsidian
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:resistance_talisman_1
+  category: equipment
+
+rebar_relics:strength_talisman_1:
+  pattern:
+    - "IDG"
+    - "BKC"
+    - "NTE"
+  key:
+    I: minecraft:iron_block
+    D: minecraft:diamond_sword
+    G: minecraft:gold_block
+    B: minecraft:bow
+    K: rebar_relics:talisman_core_1
+    C: minecraft:crossbow
+    N: minecraft:netherite_ingot
+    T: minecraft:trident
+    E: minecraft:emerald_block
+  result: rebar_relics:strength_talisman_1
+  category: equipment
+
+rebar_relics:archery_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:archery_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:archery_talisman_2
+  category: equipment
+
+rebar_relics:archery_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:archery_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:archery_talisman_3
+  category: equipment
+
+rebar_relics:strength_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:strength_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:strength_talisman_2
+  category: equipment
+
+rebar_relics:strength_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:strength_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:strength_talisman_3
+  category: equipment
+
+rebar_relics:attack_speed_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:attack_speed_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:attack_speed_talisman_2
+  category: equipment
+
+rebar_relics:attack_speed_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:attack_speed_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:attack_speed_talisman_3
+  category: equipment
+
+rebar_relics:boss_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:boss_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:boss_talisman_2
+  category: equipment
+
+rebar_relics:boss_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:boss_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:boss_talisman_3
+  category: equipment
+
+rebar_relics:poseidon_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:poseidon_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:poseidon_talisman_2
+  category: equipment
+
+rebar_relics:poseidon_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:poseidon_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:poseidon_talisman_3
+  category: equipment
+
+rebar_relics:resistance_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:resistance_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:resistance_talisman_2
+  category: equipment
+
+rebar_relics:resistance_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:resistance_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:resistance_talisman_3
+  category: equipment
+
+rebar_relics:immunity_ring:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:poisonous_potato
+    B: minecraft:golden_apple
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:immunity_ring
+  category: equipment
+
+rebar_relics:necrosis_ring:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:wither_rose
+    B: minecraft:ancient_debris
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:necrosis_ring
+  category: equipment
+
+rebar_relics:angel_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:ghast_tear
+    B: minecraft:phantom_membrane
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:angel_talisman_1
+  category: equipment
+
+rebar_relics:traveller_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:diamond_boots
+    B: minecraft:rabbit_foot
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:traveller_talisman_1
+  category: equipment
+
+rebar_relics:firefighter_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:blaze_rod
+    B: minecraft:magma_cream
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:firefighter_talisman_1
+  category: equipment
+
+rebar_relics:lava_walker_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:obsidian
+    B: minecraft:netherite_scrap
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:lava_walker_talisman_1
+  category: equipment
+
+rebar_relics:anvil_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:anvil
+    B: minecraft:diamond_block
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:anvil_talisman_1
+  category: equipment
+
+# Unique classic-inspired effects deliberately avoid Pylon's farming/hunting duplicates.
+rebar_relics:miner_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_pickaxe
+    B: minecraft:diamond_pickaxe
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:miner_talisman_1
+  category: equipment
+
+rebar_relics:caveman_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: rebar_relics:miner_talisman_1
+    B: pylon:steel_ingot
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:caveman_talisman_1
+  category: equipment
+
+rebar_relics:warrior_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_sword
+    B: minecraft:blaze_rod
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:warrior_talisman_1
+  category: equipment
+
+rebar_relics:knight_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_ingot
+    B: minecraft:golden_apple
+    K: rebar_relics:relic_matrix
+  result: rebar_relics:knight_talisman_1
+  category: equipment
+
+# Whirlwind uses ordinary arrows only: tridents remain with vanilla pickup logic.
+rebar_relics:whirlwind_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:breeze_rod
+    B: pylon:steel_sheet
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:whirlwind_talisman_1
+  category: equipment
+
+rebar_relics:whirlwind_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:whirlwind_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:whirlwind_talisman_2
+  category: equipment
+
+rebar_relics:whirlwind_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:whirlwind_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:whirlwind_talisman_3
+  category: equipment
+
+# Bags are expensive personal storage keys; contents are server-side,
+# never copied with the item or transferred between players.
+rebar_relics:talisman_bag_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: pylon:steel_ingot
+    B: minecraft:shulker_shell
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:talisman_bag_1
+  category: equipment
+
+rebar_relics:talisman_bag_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:talisman_bag_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:talisman_bag_2
+  category: equipment
+
+rebar_relics:talisman_bag_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:talisman_bag_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:talisman_bag_3
+  category: equipment
