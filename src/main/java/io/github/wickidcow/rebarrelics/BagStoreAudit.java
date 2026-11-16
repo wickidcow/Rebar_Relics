@@ -1,5 +1,6 @@
 package io.github.wickidcow.rebarrelics;
 
+import io.github.pylonmc.pylon.PylonItems;
 import io.github.pylonmc.rebar.item.builder.ItemStackBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -33,6 +34,12 @@ final class BagStoreAudit {
             ItemStack last = ItemStackBuilder.rebar(
                     Material.AMETHYST_SHARD, new NamespacedKey(plugin, "whirlwind_talisman_3")).build();
             first.setAmount(2);
+            // Prove native Pylon Talismans are accepted, not just our own
+            // Rebar_Relics items or test-built unregistered facsimiles.
+            ItemStack pylonHealth = PylonItems.HEALTH_TALISMAN_SIMPLE.clone();
+            require(RelicItems.isStorableTalisman(pylonHealth),
+                    "Native Pylon Health Talisman must be storable");
+
 
             require(RelicItems.isStorableTalisman(first), "Original Rebar talisman was not accepted");
             require(RelicItems.isStorableTalisman(last), "Highest-tier Rebar talisman was not accepted");
@@ -51,6 +58,7 @@ final class BagStoreAudit {
                 require(value == null, "Player UUID separation failed");
             }
             contents[0] = first;
+            contents[13] = pylonHealth;
             contents[26] = last;
             store.save(owner, contents);
 
@@ -62,6 +70,8 @@ final class BagStoreAudit {
             require(roundtrip[0].isSimilar(first) && roundtrip[0].getAmount() == 2,
                     "Rebar item PDC or amount changed in serialized storage");
             require(roundtrip[26].isSimilar(last), "High-tier item missing from disk");
+            require(roundtrip[13].isSimilar(pylonHealth),
+                    "Native Pylon talisman identity changed across disk round trip");
             require(!BagRules.accessible(1, 26) && BagRules.accessible(3, 26),
                     "Tier downgrade unexpectedly exposes high-tier slot");
 
@@ -70,7 +80,8 @@ final class BagStoreAudit {
             require(Files.isRegularFile(tmp.resolve("talisman-bags").resolve(owner + ".bak")),
                     "Previous storage backup missing");
             ItemStack[] persisted = store.load(owner);
-            require(persisted[0] == null && persisted[26] != null,
+            require(persisted[0] == null && persisted[26] != null
+                    && persisted[13].isSimilar(pylonHealth),
                     "Withdrawal state or high-tier slot lost");
 
             // A rejected write must leave the canonical file unchanged.
@@ -147,7 +158,7 @@ final class BagStoreAudit {
                     "Migrated item no longer passes checksum verification");
 
             plugin.getLogger().info(
-                    "Bag storage audit: PASS (real Rebar identity, 27-slot round-trip, checksum corruption rejection, v1 migration, UUID isolation, stale-GUI guard)");
+                    "Bag storage audit: PASS (real Rebar identity, 27-slot round-trip, native Pylon item, checksum corruption rejection, v1 migration, UUID isolation, stale-GUI guard)");
         } catch (Exception failure) {
             plugin.getLogger().severe("Bag storage audit: FAIL - " + failure);
         } finally {

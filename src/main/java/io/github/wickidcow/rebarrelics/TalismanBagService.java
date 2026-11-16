@@ -179,25 +179,26 @@ public final class TalismanBagService implements Listener {
             return;
         }
         boolean cursorEmpty = cursor == null || cursor.isEmpty();
-        if (cursorEmpty && existing == null) return;
-        if (!cursorEmpty && existing != null) return;
+        BagTransferRules.Action action = BagTransferRules.choose(
+                bag.tier, slot, cursorEmpty, existing == null,
+                cursorEmpty || RelicItems.isStorableTalisman(cursor),
+                cursorEmpty ? 0 : cursor.getAmount(),
+                cursorEmpty ? 0 : cursor.getMaxStackSize());
+        if (action == BagTransferRules.Action.NONE) return;
 
         ItemStack[] pending = bag.items.clone();
         ItemStack cursorAfter;
         ItemStack topAfter;
-        if (cursorEmpty) {
-            // Withdraw entire stack, never auto-collect across inventory slots.
+        if (action == BagTransferRules.Action.WITHDRAW) {
+            // Withdraw exactly one complete stack. Never merge automatically.
             topAfter = null;
             cursorAfter = existing.clone();
             pending[slot] = null;
-        } else if (BagRules.canDeposit(
-                RelicItems.isStorableTalisman(cursor), false,
-                cursor.getAmount(), cursor.getMaxStackSize(), bag.tier, slot)) {
+        } else {
+            // Deposit exactly one complete, whitelisted talisman stack.
             topAfter = cursor.clone();
             cursorAfter = null;
             pending[slot] = topAfter.clone();
-        } else {
-            return;
         }
 
         // A failed disk write leaves the inventory and cursor untouched.
