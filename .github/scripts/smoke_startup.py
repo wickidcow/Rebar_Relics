@@ -31,6 +31,12 @@ FATAL = (
 )
 
 def main():
+    # Explicitly accept Mojang's EULA for this throwaway automated server.
+    # This writes only to the CI checkout, not any player's server directory.
+    from pathlib import Path
+    run_dir = Path("run")
+    run_dir.mkdir(exist_ok=True)
+    (run_dir / "eula.txt").write_text("eula=true\\n", encoding="utf-8")
     command = ["gradle", "--no-daemon", "runServer"]
     print("Starting disposable Paper server:", " ".join(command), flush=True)
     process = subprocess.Popen(
