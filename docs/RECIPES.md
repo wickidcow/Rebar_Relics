@@ -41,3 +41,12 @@ No recipes create new Experience, Water Breathing, Farming, Hunting, Luck, Healt
 | Knight (consumable) | Pylon steel ingots | Golden apples | Relic Matrix |
 
 Mining bonuses apply only to eligible vanilla ore drops. Pylon or ItemsAdder metadata never gets cloned by the Miner effect.
+
+## Whirlwind (safe arrow deflection)
+
+- Tier I: 4 Breeze Rods + 4 Pylon Steel Sheets + Talisman Core I.
+- Tier II: 8 Whirlwind I + Talisman Core II.
+- Tier III: 8 Whirlwind II + Talisman Core III.
+
+Tier III requires 64 Tier I Whirlwind talismans (256 Breeze Rods, 256 steel sheets, and the cores used for those 64 Tier I items), eight Core II, and one Core III.
+This protects against arrows without generating additional projectiles or altering trident pickup.

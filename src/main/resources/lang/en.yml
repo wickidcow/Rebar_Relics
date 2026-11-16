@@ -181,3 +181,19 @@ item:
     lore: |-
       <arrow> 30% chance for Regeneration IV when damaged
       <arrow> Duration: 5 seconds; consumes one talisman
+
+  whirlwind_talisman_1:
+    name: "<green>Whirlwind Talisman I"
+    lore: |-
+      <arrow> 12% chance to deflect incoming arrow damage
+      <arrow> Tridents excluded; no projectile cloning or owner changes
+  whirlwind_talisman_2:
+    name: "<aqua>Whirlwind Talisman II"
+    lore: |-
+      <arrow> 22% chance to deflect incoming arrow damage
+      <arrow> Highest tier applies; duplicates do not stack
+  whirlwind_talisman_3:
+    name: "<light_purple>Whirlwind Talisman III"
+    lore: |-
+      <arrow> 35% chance to deflect incoming arrow damage
+      <arrow> Highest tier applies; duplicates do not stack

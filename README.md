@@ -6,12 +6,16 @@ An original expansion for [Rebar](https://github.com/pylonmc/rebar) and [Pylon](
 
 ## What it adds
 
-- Tier I/II/III **Archery, Strength, Attack Speed, Boss, Poseidon (trident) and Resistance** talismans.
+- Tier I/II/III **Archery, Strength, Attack Speed, Boss, Poseidon (trident), Resistance and Whirlwind** talismans.
 - Permanent **Immunity Ring** (poison) and **Necrosis Ring** (wither).
 - Classic-inspired **Angel, Traveller, Firefighter, Lava Walker, and Anvil** charms.
 - Four custom progression materials: **Relic Matrix**, **Talisman Cores I/II/III**.
 - Original passive/effect listeners, configurable strengths, Pylon's talisman guide and Rebar item IDs.
 - Exactly one highest tier applies per family; carrying duplicates does not increase potency.
+
+## Whirlwind arrow deflection
+
+Three progressively expensive Whirlwind talismans deflect 12%, 22% and 35% of incoming arrow hits. This cancels damage without cloning or redirecting projectiles. Thrown tridents, self-inflicted shots and non-arrow damage are excluded. Carrying multiple copies never multiplies the chance.
 
 ## Mining and defensive additions
 

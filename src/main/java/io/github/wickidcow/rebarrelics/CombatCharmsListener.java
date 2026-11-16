@@ -34,9 +34,8 @@ public final class CombatCharmsListener implements Listener {
 
     private boolean usefulBuff(Player player, PotionEffectType type, int amplifier, int duration) {
         PotionEffect existing = player.getPotionEffect(type);
-        return existing == null
-                || existing.getAmplifier() < amplifier
-                || existing.getDuration() < duration;
+        return PotionRules.shouldUpgrade(existing == null ? -1 : existing.getAmplifier(),
+                existing == null ? 0 : existing.getDuration(), amplifier, duration);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)

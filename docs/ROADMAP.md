@@ -49,7 +49,7 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [x] Warrior and Knight consumable protection with duplicate-copy safeguards
 - [x] Expensive Pylon material recipes for the new four talismans
 - [ ] Validate WorldGuard protection, modified drops and 32+ stack overflow behavior in Paper 26.3
-- [ ] Whirlwind projectile reflection should be implemented only after safe shooter/velocity tests
+- [x] Whirlwind arrow-deflection (no projectile spawning/ownership changes) with three expensive tiers and pure unit tests
 - [ ] Magician and Wizard intentionally deferred until native enchantment compatibility is proven
 
 - [x] Align Gradle runner with upstream Pylon/Rebar run-paper plugin requirement (9.7.1)

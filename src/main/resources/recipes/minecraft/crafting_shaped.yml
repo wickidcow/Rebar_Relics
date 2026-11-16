@@ -391,3 +391,38 @@ rebar_relics:knight_talisman_1:
     K: rebar_relics:relic_matrix
   result: rebar_relics:knight_talisman_1
   category: equipment
+
+# Whirlwind uses ordinary arrows only: tridents remain with vanilla pickup logic.
+rebar_relics:whirlwind_talisman_1:
+  pattern:
+    - "ABA"
+    - "BKB"
+    - "ABA"
+  key:
+    A: minecraft:breeze_rod
+    B: pylon:steel_sheet
+    K: rebar_relics:talisman_core_1
+  result: rebar_relics:whirlwind_talisman_1
+  category: equipment
+
+rebar_relics:whirlwind_talisman_2:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:whirlwind_talisman_1
+    K: rebar_relics:talisman_core_2
+  result: rebar_relics:whirlwind_talisman_2
+  category: equipment
+
+rebar_relics:whirlwind_talisman_3:
+  pattern:
+    - "PPP"
+    - "PKP"
+    - "PPP"
+  key:
+    P: rebar_relics:whirlwind_talisman_2
+    K: rebar_relics:talisman_core_3
+  result: rebar_relics:whirlwind_talisman_3
+  category: equipment

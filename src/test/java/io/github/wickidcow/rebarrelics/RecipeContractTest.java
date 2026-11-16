@@ -31,7 +31,7 @@ class RecipeContractTest {
     void exactlyOneHardRecipePerActiveItem() {
         Map<String, Object> recipes = load("recipes/minecraft/crafting_shaped.yml");
         Map<String, Object> lang = (Map<String, Object>) load("lang/en.yml").get("item");
-        assertEquals(33, recipes.size(), "29 active relics and four crafting materials");
+        assertEquals(36, recipes.size(), "32 active relics and four crafting materials");
         for (Map.Entry<String, Object> entry : recipes.entrySet()) {
             assertTrue(entry.getKey().startsWith("rebar_relics:"));
             String id = entry.getKey().substring("rebar_relics:".length());
@@ -58,7 +58,7 @@ class RecipeContractTest {
     @SuppressWarnings("unchecked")
     void upgradesCostEightLowerTierItemsAndOneRareCore() {
         Map<String, Object> recipes = load("recipes/minecraft/crafting_shaped.yml");
-        for (String family : List.of("archery", "strength", "attack_speed", "boss", "poseidon", "resistance")) {
+        for (String family : List.of("archery", "strength", "attack_speed", "boss", "poseidon", "resistance", "whirlwind")) {
             for (int tier = 2; tier <= 3; tier++) {
                 String id = "rebar_relics:" + family + "_talisman_" + tier;
                 Map<String, Object> recipe = (Map<String, Object>) recipes.get(id);

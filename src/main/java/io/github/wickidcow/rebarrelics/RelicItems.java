@@ -22,7 +22,7 @@ public final class RelicItems {
         ARCHERY, STRENGTH, EXPERIENCE, ANGEL, TRAVELLER, FIREFIGHTER,
         WATER_BREATHER, LAVA_WALKER, ANVIL,
         ATTACK_SPEED, BOSS, POSEIDON, RESISTANCE, IMMUNITY, NECROSIS,
-        MATRIX, CORE, MINER, CAVEMAN, WARRIOR, KNIGHT
+        MATRIX, CORE, MINER, CAVEMAN, WARRIOR, KNIGHT, WHIRLWIND
     }
 
     private static final Map<Type, Map<Integer, NamespacedKey>> KEYS = new EnumMap<>(Type.class);
@@ -68,6 +68,8 @@ public final class RelicItems {
                     Material.TRIDENT, true);
             register(plugin, Type.RESISTANCE, tier, "resistance_talisman_" + tier,
                     Material.SHIELD, true);
+            register(plugin, Type.WHIRLWIND, tier, "whirlwind_talisman_" + tier,
+                    Material.WIND_CHARGE, true);
         }
 
         register(plugin, Type.IMMUNITY, 1, "immunity_ring", Material.GOLDEN_APPLE, true);

@@ -73,3 +73,9 @@ talismans:
   knight:
     enabled: true
     chance: 0.30
+
+  whirlwind:
+    enabled: true
+    level-1: 0.12
+    level-2: 0.22
+    level-3: 0.35
