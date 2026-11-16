@@ -15,7 +15,20 @@ import time
 
 DEADLINE_SECONDS = 360
 LOADED_MARKER = "Loaded unique three-tier talismans"
-RECIPE_MARKER = "Recipe registration audit: 33/33"
+def expected_recipe_count():
+    """Compute the total from the bundled recipe file so additions don't break CI."""
+    from pathlib import Path
+    source = Path("src/main/resources/recipes/minecraft/crafting_shaped.yml")
+    if not source.is_file():
+        raise RuntimeError("Missing expected recipe source file")
+    count = sum(1 for line in source.read_text(encoding="utf-8").splitlines()
+                if re.fullmatch(r"rebar_relics:[a-z0-9_]+:", line))
+    if count <= 0:
+        raise RuntimeError("No Rebar Relics recipes found")
+    return count
+
+RECIPE_COUNT = expected_recipe_count()
+RECIPE_MARKER = f"Recipe registration audit: {RECIPE_COUNT}/{RECIPE_COUNT}"
 STOP_MARKERS = ("Done (", "Done!")
 FATAL = (
     "Could not load plugin 'Rebar_Relics'",
