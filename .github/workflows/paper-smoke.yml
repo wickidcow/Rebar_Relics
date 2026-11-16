@@ -28,6 +28,8 @@ jobs:
       - name: Compile snapshot and tests
         run: gradle --no-daemon clean build
       - name: Boot disposable Paper server with Rebar and Pylon
+        env:
+          REBAR_RELICS_BAG_AUDIT: 'true'
         run: python3 .github/scripts/smoke_startup.py
       - name: Upload startup logs
         if: always()

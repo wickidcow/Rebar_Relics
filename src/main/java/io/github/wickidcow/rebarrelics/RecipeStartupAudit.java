@@ -50,6 +50,9 @@ public final class RecipeStartupAudit implements Listener {
                 plugin.getLogger().severe("Rebar Relics recipe registration incomplete: "
                         + String.join(", ", missing));
             }
+            if ("true".equalsIgnoreCase(System.getenv("REBAR_RELICS_BAG_AUDIT"))) {
+                BagStoreAudit.run(plugin);
+            }
         } catch (Exception exception) {
             plugin.getLogger().severe("Rebar Relics recipe registration incomplete: "
                     + exception.getMessage());

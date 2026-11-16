@@ -61,6 +61,7 @@ relic abilities, optional integration bridges, translations and custom textures.
 - [x] Per-player storage instead of item-embedded inventory to prevent clone-bag duplication
 - [x] Atomic server-side YAML writes, item whitelist, no nested containers
 - [x] Bag contents remain inert (neither Rebar nor Pylon activation from storage)
-- [ ] Run the bag's live persistence and click/drag stress tests
+- [x] Add Paper bootstrap round-trip test for Rebar item metadata, atomic save/load, tier retention and invalid-write rejection
+- [ ] Run the bag's live click/drag stress tests with a player
 - [ ] Validate server crash, filesystem write error and restart recovery with backed-up copies
 - [ ] Consider optional activation only when double-counting and lifecycle issues are tested
